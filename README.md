@@ -14,7 +14,10 @@ All asset URLs are relative so the page works under `/schema-webpage/`.
 
 The site includes all 25 ARC-AGI-3 runs, all 21 DiG-bench videos, the MazeBench
 replay, and four complete-level case comparisons. Case GIFs and posters are
-rendered at 3x density (2376 × 1278) for clear text on Retina screens.
+rendered at 3x density (2376 × 1278) for clear text on Retina screens. The page
+plays equivalent silent MP4 loops so pausing or scrolling away preserves the
+current frame. Every action and key-frame pause is retained; the shorter run
+holds its completed state until the longer run finishes.
 
 ## Local preview
 
@@ -36,6 +39,8 @@ also launches the local preview.
 - `scripts/`: reproducible figure and media preparation scripts. Regenerating
   media requires the original research files in the parent workspace, plus
   the dependencies specified in each script. They are not needed for hosting.
+- `scripts/prepare_case_replays.py`: converts the source GIFs to browser replays,
+  verifying every frame timestamp and duration, with first-frame posters.
 
 ## Attribution
 

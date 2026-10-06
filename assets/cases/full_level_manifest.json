@@ -3060,7 +3060,13 @@
     },
     "pixel_density": 3,
     "width": 2376,
-    "height": 1278
+    "height": 1278,
+    "web_replay": {
+      "video": "representation_full_3x.mp4",
+      "poster": "representation_start_3x.png",
+      "frames": 1220,
+      "duration_ms": 42950
+    }
   },
   "certification": {
     "left": {
@@ -3271,7 +3277,13 @@
     },
     "pixel_density": 3,
     "width": 2376,
-    "height": 1278
+    "height": 1278,
+    "web_replay": {
+      "video": "certification_full_3x.mp4",
+      "poster": "certification_start_3x.png",
+      "frames": 42,
+      "duration_ms": 10740
+    }
   },
   "planning": {
     "left": {
@@ -3946,7 +3958,13 @@
     },
     "pixel_density": 3,
     "width": 2376,
-    "height": 1278
+    "height": 1278,
+    "web_replay": {
+      "video": "planning_full_3x.mp4",
+      "poster": "planning_start_3x.png",
+      "frames": 234,
+      "duration_ms": 22330
+    }
   },
   "verification": {
     "left": {
@@ -4448,6 +4466,12 @@
     },
     "pixel_density": 3,
     "width": 2376,
-    "height": 1278
+    "height": 1278,
+    "web_replay": {
+      "video": "verification_full_3x.mp4",
+      "poster": "verification_start_3x.png",
+      "frames": 144,
+      "duration_ms": 20320
+    }
   }
 }

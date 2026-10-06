@@ -30,7 +30,7 @@ button, select { font: inherit; }
 .case-toggle[data-paused="true"] .case-icon-pause { display: none; }
 .case-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 3.03%; margin-bottom: .6rem; font-family: 'Castoro', Georgia, serif; font-size: 1.1rem; font-weight: 400; line-height: 1.5; text-align: center; color: #1f2937; }
 .case-media { margin: 0; }
-.case-media img { display: block; width: 100%; height: auto; border-radius: 4px; image-rendering: auto; }
+.case-media video { display: block; width: 100%; height: auto; aspect-ratio: 2376 / 1278; border-radius: 4px; background: #fff; }
 .case-caption { color: #6b7280; font-size: .9rem; line-height: 1.75; margin: .75rem 0 0; }
 .video-tabs { display: flex; justify-content: center; gap: 8px; border-bottom: 1px solid #d1d5db; margin: 1.5rem 0; }
 .video-tabs button { cursor: pointer; padding: 12px 22px; border: 0; border-bottom: 2px solid transparent; color: #6b7280; background: transparent; }

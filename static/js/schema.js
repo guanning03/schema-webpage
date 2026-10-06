@@ -45,37 +45,55 @@ function setupGameSelector(group, filePrefix, benchmark) {
 setupGameSelector('arc', 'arc3_fable5_', 'ARC-AGI-3');
 setupGameSelector('dig', 'digbench_schema_', 'DiG-bench');
 
-document.querySelectorAll('video').forEach(video => {
+document.querySelectorAll('#videos video').forEach(video => {
   video.addEventListener('play', () => {
-    document.querySelectorAll('video').forEach(other => { if (other !== video) other.pause(); });
+    document.querySelectorAll('#videos video').forEach(other => { if (other !== video) other.pause(); });
   });
 });
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 document.querySelectorAll('.case-study').forEach(card => {
-  const gif = card.querySelector('.case-gif');
+  const replay = card.querySelector('.case-replay');
   const button = card.querySelector('.case-toggle');
   const title = card.querySelector('h5').textContent;
   let visible = false;
-  let paused = reducedMotion.matches;
-  function update() {
-    const source = visible && !paused ? gif.dataset.gif : gif.dataset.poster;
-    if (gif.getAttribute('src') !== source) gif.setAttribute('src', source);
+  let pausedByUser = reducedMotion.matches;
+  function updateButton() {
+    const paused = replay.paused;
     button.dataset.paused = String(paused);
     button.title = paused ? 'Play replay' : 'Pause replay';
     button.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} ${title} comparison`);
   }
-  button.addEventListener('click', () => { paused = !paused; update(); });
+  function updatePlayback() {
+    if (visible && !pausedByUser && !document.hidden) {
+      replay.play().catch(error => {
+        if (error.name === 'AbortError') return;
+        pausedByUser = true;
+        updateButton();
+      });
+    } else {
+      replay.pause();
+    }
+    updateButton();
+  }
+  button.addEventListener('click', () => {
+    pausedByUser = !replay.paused;
+    if (!pausedByUser) visible = true;
+    updatePlayback();
+  });
+  replay.addEventListener('play', updateButton);
+  replay.addEventListener('pause', updateButton);
+  document.addEventListener('visibilitychange', updatePlayback);
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       visible = entries[0].isIntersecting;
-      update();
-    }, { threshold: .1 });
-    observer.observe(gif);
+      updatePlayback();
+    }, { threshold: .05 });
+    observer.observe(replay);
   } else {
     visible = true;
   }
-  update();
+  updatePlayback();
 });
 
 const copyButton = document.getElementById('copy-citation');
