@@ -33,6 +33,7 @@ button, select { font: inherit; }
 .case-media video { display: block; width: 100%; height: auto; aspect-ratio: 2376 / 1278; border-radius: 4px; background: #fff; }
 .case-caption { color: #6b7280; font-size: .9rem; line-height: 1.75; margin: .75rem 0 0; }
 .video-tabs { display: flex; justify-content: center; gap: 8px; border-bottom: 1px solid #d1d5db; margin: 1.5rem 0; }
+#videos .video-tabs button, #videos .video-toolbar, #videos .video-toolbar select, #videos .video-caption { font-family: 'Castoro', Georgia, serif; font-weight: 400; }
 .video-tabs button { cursor: pointer; padding: 12px 22px; border: 0; border-bottom: 2px solid transparent; color: #6b7280; background: transparent; }
 .video-tabs button[aria-selected="true"] { color: #ab1727; border-bottom-color: #ab1727; }
 .video-tabs button:hover { color: #ab1727; }
