@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .DS_Store
+assets/cases/*_key_*_3x.png
+assets/cases/certification_level3_full_3x.*
+assets/cases/certification_level6_full_3x.*

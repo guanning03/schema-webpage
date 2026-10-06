@@ -56,6 +56,69 @@ document.querySelectorAll('.case-study').forEach(card => {
   const replay = card.querySelector('.case-replay');
   const button = card.querySelector('.case-toggle');
   const title = card.querySelector('h5').textContent;
+  const timeline = window.schemaCaseTimelines[card.dataset.case];
+  const counters = [...card.querySelectorAll('[data-case-count]')];
+  const cue = card.querySelector('.case-cue');
+  const evidence = card.querySelector('.case-evidence');
+  let previousStep = -1;
+  let previousScene = null;
+  function updateExplanation(seconds = replay.currentTime) {
+    const elapsed = seconds * 1000 + .5;
+    let low = 0, high = timeline.starts.length;
+    while (low + 1 < high) {
+      const middle = Math.floor((low + high) / 2);
+      if (timeline.starts[middle] <= elapsed) low = middle;
+      else high = middle;
+    }
+    const step = low;
+    if (step === previousStep) return;
+    previousStep = step;
+    const segment = timeline.segments.findLast(item => item.start <= step);
+    const localStep = segment ? step - segment.start : step;
+    if (segment) card.querySelector('.case-game').textContent = `AR25 · Level ${segment.level}`;
+    counters.forEach((counter, side) => {
+      const total = segment ? segment.counts[side] : timeline.counts[side];
+      const complete = localStep >= total;
+      counter.dataset.complete = String(complete);
+      counter.textContent = `${complete ? 'Completed · ' : ''}${Math.min(localStep, total).toLocaleString('en-US')} actions`;
+    });
+    const scene = timeline.scenes.findLast(item => item.step <= step);
+    if (scene === previousScene) return;
+    previousScene = scene;
+    cue.textContent = scene.text;
+    evidence.replaceChildren();
+    for (const detail of scene.detail || []) {
+      const figure = document.createElement('figure');
+      const content = document.createElement(detail.image ? 'img' : 'span');
+      if (detail.image) {
+        content.src = `assets/cases/${detail.image}`;
+        content.alt = detail.label;
+        content.width = 60;
+        content.height = 60;
+      } else {
+        content.className = 'case-metric';
+        content.textContent = detail.value;
+      }
+      const caption = document.createElement('figcaption');
+      caption.textContent = detail.label;
+      figure.append(content, caption);
+      evidence.append(figure);
+    }
+    evidence.hidden = !scene.detail;
+  }
+  // Synchronize with displayed frames, including brief holds and loop restarts.
+  // Text stays outside the video so it remains crisp at every display size.
+  if ('requestVideoFrameCallback' in replay) {
+    const onFrame = (_now, metadata) => {
+      updateExplanation(metadata.mediaTime);
+      replay.requestVideoFrameCallback(onFrame);
+    };
+    replay.requestVideoFrameCallback(onFrame);
+  } else {
+    replay.addEventListener('timeupdate', () => updateExplanation());
+  }
+  replay.addEventListener('seeked', () => updateExplanation());
+  updateExplanation(0);
   let visible = false;
   let pausedByUser = reducedMotion.matches;
   function updateButton() {
@@ -86,9 +149,9 @@ document.querySelectorAll('.case-study').forEach(card => {
   document.addEventListener('visibilitychange', updatePlayback);
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
-      visible = entries[0].isIntersecting;
+      visible = entries[0].isIntersecting && entries[0].intersectionRatio >= .55;
       updatePlayback();
-    }, { threshold: .05 });
+    }, { threshold: [0, .55] });
     observer.observe(replay);
   } else {
     visible = true;

@@ -23,10 +23,12 @@ def convert(item):
     with Image.open(source) as image:
         assert image.n_frames == record["timeline_steps"]
         image.seek(0)
-        image.save(poster)
+        # The browser renders counters and explanations as crisp, selectable
+        # text. Keep the GIF footer only for standalone fallback playback.
+        image.crop((0, 0, image.width, 1152)).save(poster)
     subprocess.run([
         "ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(source),
-        "-an", "-fps_mode", "passthrough", "-enc_time_base", "1/1000",
+        "-an", "-vf", "crop=iw:1152:0:0", "-fps_mode", "passthrough", "-enc_time_base", "1/1000",
         "-c:v", "libx264", "-preset", "fast", "-crf", "12", "-bf", "0",
         "-pix_fmt", "yuv420p", "-threads", "2", "-movflags", "+faststart",
         "-video_track_timescale", "1000", str(video),
@@ -38,14 +40,10 @@ def convert(item):
     ]))
     frames, stream = probe["frames"], probe["streams"][0]
     assert len(frames) == record["timeline_steps"]
-    assert (stream["width"], stream["height"]) == (record["width"], record["height"])
+    assert (stream["width"], stream["height"]) == (record["width"], 1152)
     elapsed = 0
     for index, frame in enumerate(frames):
-        duration = record["highlights"].get(str(index), {}).get("hold_ms", record["action_pace_ms"])
-        if index == 0:
-            duration = 900
-        if index == len(frames) - 1:
-            duration = 1800
+        duration = record["frame_durations_ms"][index]
         assert round(float(frame["pts_time"]) * 1000) == elapsed, (name, index, "timestamp")
         assert round(float(frame["duration_time"]) * 1000) == duration, (name, index, "duration")
         elapsed += duration
