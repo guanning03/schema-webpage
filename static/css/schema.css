@@ -23,11 +23,12 @@ button, select { font: inherit; }
 .case-title { min-width: 0; }
 .case-title h5 { color: #1f2937; font-size: 1.1rem; font-weight: 600; line-height: 1.4; margin: 0; }
 .case-game { color: #6b7280; font-size: .85rem; margin: 3px 0 0; }
-.case-toggle { cursor: pointer; flex-shrink: 0; border: 1px solid #d1d5db; border-radius: 999px; padding: 5px 15px; background: #fff; color: #4b5563; font-size: .8rem; }
-.case-toggle:hover { color: #ab1727; border-color: #ab1727; }
-.case-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 3.03%; margin-bottom: .65rem; font-size: .88rem; font-weight: 600; text-align: center; color: #4b5563; }
-.case-labels span { padding: 8px 4px; background: #f3f4f6; border-radius: 4px; }
-.case-labels .case-label-primary { color: #ab1727; background: #fff1f2; }
+.case-toggle { cursor: pointer; flex-shrink: 0; display: grid; place-items: center; width: 32px; height: 32px; padding: 6px; border: 0; border-radius: 0; background: transparent; color: #6b7280; }
+.case-toggle:hover { color: #1f2937; }
+.case-toggle svg { display: block; width: 18px; height: 18px; }
+.case-toggle[data-paused="false"] .case-icon-play,
+.case-toggle[data-paused="true"] .case-icon-pause { display: none; }
+.case-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 3.03%; margin-bottom: .6rem; font-family: 'Castoro', Georgia, serif; font-size: 1.1rem; font-weight: 400; line-height: 1.5; text-align: center; color: #1f2937; }
 .case-media { margin: 0; }
 .case-media img { display: block; width: 100%; height: auto; border-radius: 4px; image-rendering: auto; }
 .case-caption { color: #6b7280; font-size: .9rem; line-height: 1.75; margin: .75rem 0 0; }
@@ -80,7 +81,7 @@ footer.footer .footer-logos img { display: block; height: auto; max-height: 100%
   .case-heading { gap: 8px; }
   .case-studies > h4 { font-size: 1.35rem; }
   .case-title h5 { font-size: 1rem; }
-  .case-labels { font-size: .75rem; }
+  .case-labels { font-size: .9rem; }
   .case-caption { font-size: .85rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

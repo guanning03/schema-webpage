@@ -61,7 +61,8 @@ document.querySelectorAll('.case-study').forEach(card => {
   function update() {
     const source = visible && !paused ? gif.dataset.gif : gif.dataset.poster;
     if (gif.getAttribute('src') !== source) gif.setAttribute('src', source);
-    button.textContent = paused ? 'Play' : 'Pause';
+    button.dataset.paused = String(paused);
+    button.title = paused ? 'Play replay' : 'Pause replay';
     button.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} ${title} comparison`);
   }
   button.addEventListener('click', () => { paused = !paused; update(); });
