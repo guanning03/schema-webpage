@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Schema learns unknown environments through agentic program induction: hypothesize, certify, plan, and act with verification." name="description"/>
+<meta content="Schema, Program Induction, LLM Agents, World Models, ARC-AGI-3, DiG-bench, MazeBench" name="keywords"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Schema: Discovering Unknown Environments via Agentic Program Induction</title>
+
+
+
+
+
+
+
+
+
+
+
+<!-- KaTeX for math rendering -->
+
+
+
+
+
+
+
+
+<link href="static/css/fonts.css" rel="stylesheet"/><link href="static/css/bulma.min.css" rel="stylesheet"/><link href="static/css/index.css" rel="stylesheet"/><style>
+    :root {
+      --primary: #363636;
+      --primary-light: #4a4a4a;
+      --text-dark: #1f2937;
+      --text-muted: #6b7280;
+      --bg-white: #ffffff;
+      --bg-gray: #f9fafb;
+      --border-light: #e5e7eb;
+    }
+
+    body { color: var(--text-dark); }
+
+    .hero { background: #f3f4f6; border-bottom: 1px solid #e5e7eb; overflow: visible !important; }
+    .hero .hero-body { padding-top: 2rem; padding-bottom: 0.8rem; overflow: visible !important; }
+    .hero * { overflow: visible !important; }
+    .hero .container, .hero .columns, .hero .column { overflow: visible !important; max-height: none !important; }
+    .hero .title.is-1 { color: #ab1727; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; }
+    .hero .publication-authors a { color: #374151 !important; }
+    .hero .publication-authors a:hover { color: #C41230 !important; text-decoration: underline; }
+    .hero .publication-authors span { color: #4b5563; }
+
+    /* Venue / award badges */
+    .publication-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      margin: 0.7rem 0 1.4rem 0;
+    }
+    .venue-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45em;
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1.35;
+    }
+    .venue-line i { font-size: 0.95em; }
+    .venue-oral { color: var(--text-dark); }
+    .venue-award { color: var(--text-dark); }
+    .venue-line.venue-oral i,
+    .venue-line.venue-oral svg { color: #ab1727 !important; }
+    .venue-line.venue-award i,
+    .venue-line.venue-award svg { color: #b8860b !important; }
+    @media screen and (max-width: 480px) {
+      .venue-line { font-size: 1.05rem; }
+    }
+
+    .publication-links .button {
+      margin: 0.25rem;
+      background: transparent;
+      border: 1px solid #d1d5db;
+      color: #374151;
+    }
+    .publication-links .button:hover {
+      background: #f3f4f6;
+      border-color: #9ca3af;
+      color: #1f2937;
+    }
+    .publication-links .button[href*="arxiv"] .icon i {
+      color: #B31B1B !important;
+    }
+
+    /* Section titles */
+    h2.section-title,
+    h3.section-title,
+    h4.subsection-title,
+    .title.section-title {
+      color: var(--primary) !important;
+      font-weight: 600;
+      font-family: 'Google Sans', sans-serif;
+      margin-bottom: 1.5rem;
+    }
+
+    h4.subsection-title {
+      font-size: 1.25rem;
+      font-family: 'Google Sans', sans-serif;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Body text */
+    .content p, .content li {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .section-white { background: var(--bg-white); }
+    .section-gray { background: var(--bg-gray); }
+
+    .insight-box {
+      background: #fafafa;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid #9ca3af;
+      padding: 1.5rem 2rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+    .insight-box p {
+      font-family: 'Castoro', Georgia, serif;
+      font-size: 1.1rem;
+    }
+
+    .math-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 768px) { .math-comparison { grid-template-columns: 1fr; } }
+
+    .math-box {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+    }
+    .math-box.rl { border-top: 3px solid #dc2626; }
+    .math-box.ml { border-top: 3px solid var(--primary); }
+    .math-box h4 { font-weight: 600; margin-bottom: 1rem; color: var(--text-dark); }
+
+    .figure-container {
+      background: transparent;
+      border-radius: 0;
+      padding: 1rem 0;
+      border: none;
+      margin: 1.5rem 0;
+    }
+    .figure-container img { border-radius: 4px; }
+    .figure-caption { font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; text-align: center; }
+
+    /* Equal height for analysis figures */
+    .analysis-columns {
+      display: flex;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .analysis-columns .analysis-col {
+      flex: 1;
+      display: flex;
+    }
+    .analysis-columns .figure-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    .analysis-columns .figure-container .img-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .analysis-columns .figure-container img {
+      max-width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+    }
+    @media (max-width: 768px) {
+      .analysis-columns { flex-direction: column; }
+    }
+
+    .result-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-light);
+    }
+    .result-card h4 { color: var(--text-dark); font-weight: 600; margin-bottom: 1rem; }
+
+    .highlight-stat {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .algorithm-box {
+      background: #1f2937;
+      color: #e5e7eb;
+      border-radius: 6px;
+      padding: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+    }
+    .algorithm-box .comment { color: #9ca3af; }
+    .algorithm-box .keyword { color: #f472b6; }
+    .algorithm-box .function { color: #60a5fa; }
+
+    table.comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    table.comparison-table th {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+    table.comparison-table th * { color: #fff !important; }
+    table.comparison-table th .katex, table.comparison-table th .katex * { color: #fff !important; }
+    table.comparison-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-light); }
+    table.comparison-table tr:last-child td { border-bottom: none; }
+    table.comparison-table tr:hover td { background: var(--bg-gray); }
+
+    pre code { display: block; padding: 1rem; background: #1f2937; color: #e5e7eb; border-radius: 6px; overflow-x: auto; }
+    .bibtex-box {
+      background: #374151;
+      border: 1px solid #4b5563;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .bibtex-box pre {
+      margin: 0;
+      background: transparent;
+    }
+    .bibtex-box code {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #e5e7eb;
+      background: transparent;
+      padding: 0;
+    }
+
+    footer.footer { background: #1f2937; color: #9ca3af; padding: 2rem; overflow: hidden; }
+    footer.footer .columns { margin: 0; }
+    footer.footer .container { overflow: hidden; }
+    footer a { color: #93c5fd; }
+    footer a:hover { color: #bfdbfe; }
+
+    .emoji-icon { margin-right: 0.5rem; }
+    .section { padding: 3rem 1.5rem; }
+
+    .formula-box {
+      background: transparent;
+      border: none;
+      padding: 1rem 0;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+
+    .conclusion-box {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .conclusion-box p {
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .conclusion-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ==================== MOBILE RESPONSIVE STYLES ==================== */
+
+    /* Tablets and smaller */
+    @media (max-width: 1024px) {
+      .hero .title.is-1 { font-size: 2.2rem; }
+    }
+
+    /* Mobile devices */
+    @media (max-width: 768px) {
+      /* Hero Section */
+      .hero .hero-body { padding-top: 1.2rem; padding-bottom: 0.6rem; }
+      .hero .title.is-1 {
+        font-size: 1.5rem;
+        white-space: normal !important;
+        line-height: 1.3;
+      }
+
+      /* Authors - make them wrap nicely */
+      .publication-authors { font-size: 0.9rem !important; }
+      .publication-authors .author-block {
+        display: inline;
+        white-space: nowrap;
+      }
+      .is-size-6.publication-authors { font-size: 0.8rem !important; }
+      .is-size-6.publication-authors .author-block { margin-left: 0.3em !important; }
+
+      /* Section padding */
+      .section { padding: 2rem 1rem; }
+
+      /* Titles */
+      h2.title.is-3, .title.is-3.section-title { font-size: 1.4rem; }
+      h4.subsection-title { font-size: 1.1rem; }
+
+      /* Math comparison boxes */
+      .math-comparison { gap: 1rem; }
+      .math-box { padding: 1rem; }
+      .math-box p { font-size: 0.95rem; }
+
+      /* Formula boxes - handle overflow */
+      .formula-box {
+        overflow-x: auto;
+        padding: 0.5rem;
+      }
+      .formula-box p { font-size: 0.9rem; }
+
+      /* Insight boxes */
+      .insight-box { padding: 1rem 1.25rem; }
+      .insight-box p { font-size: 1rem; }
+
+      /* Result cards */
+      .result-card { padding: 1.25rem; }
+      .result-card h4 { font-size: 1.1rem; }
+
+      /* Figure captions */
+      .figure-caption { font-size: 0.8rem; }
+
+      /* Tables - make scrollable */
+      .comparison-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      table.comparison-table {
+        min-width: 500px;
+        font-size: 0.85rem;
+      }
+      table.comparison-table th,
+      table.comparison-table td {
+        padding: 0.5rem 0.75rem;
+      }
+
+      /* Conclusion box */
+      .conclusion-box { padding: 1.25rem; }
+
+      /* BibTeX */
+      .bibtex-box { padding: 1rem; }
+      .bibtex-box code { font-size: 0.7rem; }
+
+      /* Publication links buttons */
+      .publication-links .button {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      /* Footer */
+      footer.footer { padding: 1.5rem 1rem; }
+      footer.footer img { height: 60px !important; }
+      footer p { font-size: 0.85rem; }
+
+    }
+
+    /* Small phones */
+    @media (max-width: 480px) {
+      .hero .title.is-1 { font-size: 1.25rem; }
+      .publication-authors { font-size: 0.8rem !important; }
+
+      h2.title.is-3, .title.is-3.section-title { font-size: 1.25rem; }
+
+      .content p, .content li { font-size: 0.9rem; }
+
+      .math-box h4 { font-size: 0.95rem; }
+      .math-box p { font-size: 0.85rem; }
+
+      .result-card { padding: 1rem; }
+      .result-card h4 { font-size: 1rem; }
+
+      /* Extra small formulas */
+      .formula-box p { font-size: 0.85rem; }
+
+      /* Theorem boxes */
+      .result-card[style*="border-left"] { padding: 1rem; }
+      .result-card[style*="border-left"] h4 { font-size: 1rem; }
+      .result-card[style*="border-left"] div[style*="text-align: center"] { font-size: 0.9rem !important; }
+    }
+
+    /* Ensure images never overflow */
+    img { max-width: 100%; height: auto; }
+
+    /* KaTeX formula overflow handling */
+    .katex-display { overflow-x: auto; overflow-y: hidden; }
+
+    /* Global overflow prevention */
+    .container { overflow-x: hidden; }
+    .content { word-wrap: break-word; overflow-wrap: break-word; }
+
+    /* Table wrapper for mobile scrolling */
+    .comparison-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Algorithm box mobile */
+    @media (max-width: 768px) {
+      .algorithm-box {
+        font-size: 0.75rem;
+        padding: 1rem;
+      }
+    }
+
+    /* Result card theorem boxes mobile adjustments */
+    @media (max-width: 768px) {
+      .result-card div[style*="text-align: center"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+  </style><link href="static/css/schema.css" rel="stylesheet"/>
+<link href="static/favicon.svg" rel="icon" type="image/svg+xml"/><script defer="" src="static/js/fontawesome.all.min.js"></script><script defer="" src="static/js/schema.js"></script><meta content="Schema: Discovering Unknown Environments via Agentic Program Induction" property="og:title"/><meta content="Schema learns unknown environments through agentic program induction: hypothesize, certify, plan, and act with verification." property="og:description"/></head>
+<body><a class="skip-link" href="#motivation">Skip to paper overview</a><section class="hero" id="top">
+<div class="hero-body">
+<div class="container is-max-widescreen">
+<div class="columns is-centered">
+<div class="column has-text-centered">
+<h1 class="title is-1 publication-title">Schema: Discovering Unknown Environments<br/>via Agentic Program Induction</h1>
+<!-- Venue / Award Badges -->
+
+<!-- Authors Section -->
+<div class="is-size-5 publication-authors"><span class="author-block"><a href="https://scholar.google.com/citations?user=SU6ooAQAAAAJ&amp;hl=en" rel="noopener noreferrer" target="_blank">Guanning Zeng</a><sup>3,*</sup>,</span>
+<span class="author-block"><a href="https://scholar.google.com/citations?user=3a02bCEAAAAJ" rel="noopener noreferrer" target="_blank">Jiani Wang</a><sup>1</sup>,</span>
+<span class="author-block"><a href="https://wenjiema.com/" rel="noopener noreferrer" target="_blank">Wenjie Ma</a><sup>2</sup>,</span>
+<span class="author-block"><a href="https://fugtemypt123.github.io/" rel="noopener noreferrer" target="_blank">Shaofeng Yin</a><sup>1</sup>,</span>
+<span class="author-block"><a href="https://chenyangwangjohn.github.io/" rel="noopener noreferrer" target="_blank">Chenyang Wang</a><sup>1</sup>,</span>
+<span class="author-block"><a href="https://shichenliu.github.io/" rel="noopener noreferrer" target="_blank">Shichen Liu</a><sup>1</sup>,</span><br class="author-break"/>
+<span class="author-block"><a href="https://people.eecs.berkeley.edu/~kanazawa/" rel="noopener noreferrer" target="_blank">Angjoo Kanazawa</a><sup>2</sup>,</span>
+<span class="author-block"><a href="https://wodenimoni.com/" rel="noopener noreferrer" target="_blank">Wode Ni</a><sup>1</sup>,</span>
+<span class="author-block"><a href="https://xiuyuli.com/" rel="noopener noreferrer" target="_blank">Xiuyu Li</a><sup>1,*</sup>,</span>
+<span class="author-block"><a href="https://azanette.com/" rel="noopener noreferrer" target="_blank">Andrea Zanette</a><sup>3,*</sup>,</span>
+<span class="author-block"><a href="https://havenfeng.github.io/" rel="noopener noreferrer" target="_blank">Haiwen Feng</a><sup>1,2,*</sup></span></div>
+<div class="is-size-6 publication-authors" style="margin-top: 0.4rem;">
+<span class="author-block"><sup>1</sup>Impossible Research</span>
+<span class="author-block" style="margin-left: 0.8em;"><sup>2</sup>UC Berkeley</span>
+<span class="author-block" style="margin-left: 0.8em;"><sup>3</sup>Carnegie Mellon University</span>
+<span class="author-block" style="margin-left: 0.8em;"><sup>*</sup>Project leads</span></div>
+<div class="has-text-centered" style="margin-top: 0.8rem;">
+<div class="publication-links">
+<span class="link-block"><a class="external-link button is-normal is-rounded" href="https://arxiv.org/abs/2609.39140" rel="noopener noreferrer" target="_blank"><span class="icon"><img alt="" src="static/images/arxiv-logomark-small.svg" style="width: 1em; height: 1em; vertical-align: middle;"/></span><span>arXiv</span></a></span>
+<span class="link-block"><a class="external-link button is-normal is-rounded" href="assets/paper/schema.pdf" rel="noopener noreferrer" target="_blank"><span class="icon"><i aria-hidden="true" class="fas fa-file-pdf"></i></span><span>Paper</span></a></span>
+<span class="link-block"><a class="external-link button is-normal is-rounded" id="code-link" href="" aria-disabled="true" tabindex="-1"><span class="icon"><i aria-hidden="true" class="fab fa-github"></i></span><span>Code</span></a></span>
+<span class="link-block"><a class="external-link button is-normal is-rounded" href="https://huggingface.co/datasets/schema-harness/arc-agi-3-schema-traces" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="icon">🤗</span><span>Traces</span></a></span>
+<span class="link-block"><a class="external-link button is-normal is-rounded" href="#videos"><span class="icon"><i aria-hidden="true" class="fas fa-play-circle"></i></span><span>Videos</span></a></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><main><section aria-label="Schema overview" class="section section-white" style="padding-top: 0.8rem; padding-bottom: 0.5rem;">
+<div class="container is-max-desktop">
+<div class="figure-container" style="margin: 0;">
+<div class="has-text-centered"><img alt="Schema observes a world, induces a program of its mechanisms, and uses the program to plan and act. Benchmark comparisons show gains across ARC-AGI-3, DiG-bench, and MazeBench." class="zoomable" fetchpriority="high" height="1135" src="assets/figures/teaser.webp" style="max-width: 100%;" width="2200"/></div>
+<p class="figure-caption"><strong>Learning unknown worlds through programs.</strong> Schema reaches <strong>99.2% RHAE on ARC-AGI-3</strong>, solves <strong>all 21 public DiG-bench games</strong>, and exceeds the <strong>top-50 human median on MazeBench</strong>. The plots compare harnesses using the same base models.</p>
+</div>
+</div>
+</section><section class="section section-white" id="motivation">
+<div class="container is-max-desktop">
+<h2 class="title is-3 section-title">LLM Agents in Unfamiliar Environments</h2>
+<div class="content has-text-justified">
+<p>In an unfamiliar environment, an agent does not know the rules, the meaning of its observations, or even what counts as success. It must discover these through interaction, then use what it learns to act efficiently.</p>
+<p>Humans can make progress by forming a provisional explanation of how the world works, testing it through interaction, and revising it when observations disagree. The same evolving understanding guides both <strong>what to investigate</strong> and <strong>what to do next</strong>.</p>
+</div>
+<p class="motivation-question">How can we design an agent harness that operates according to these same principles?</p>
+</div></section><section class="section section-white" id="method" style="padding-top: 1rem;">
+<div class="container is-max-desktop">
+<h2 class="title is-3 section-title">Schema: Interactive Program Induction</h2>
+<div class="content has-text-justified"><p>Schema is an agent harness with a persistent program workspace and four operations: <strong>hypothesize, certify, plan, and act with verification</strong>. The LLM decides what to investigate, when to revise its program, and how to act. The harness makes those programs testable against experience and usable for planning.</p></div>
+<div class="figure-container"><div class="has-text-centered"><img alt="The Schema harness connects hypothesis construction, history certification, planning, and verified execution. A prediction mismatch returns a counterexample to the agent." class="zoomable" decoding="async" height="1284" loading="lazy" src="assets/figures/schema_method.webp" style="max-width: 100%;" width="2200"/></div></div>
+<div class="content method-summary"><ul>
+<li>Build and refine an executable theory of the environment.</li>
+<li>Check the theory against all recorded experience.</li>
+<li>Use the theory to design experiments and plan actions.</li>
+<li>Execute actions and stop when observations contradict predictions.</li>
+</ul>
+</div>
+</div></section><section class="section section-gray" id="experiments">
+<div class="container is-max-desktop">
+<h2 class="title is-3 section-title">Experiments</h2>
+<div class="content has-text-justified" style="margin-bottom: 2rem;"><p>We evaluate Schema on three complementary challenges: action efficiency, hidden-mechanism discovery, and long-horizon learning. Within each benchmark, we compare against baseline harnesses using the <strong>same base model</strong>.</p></div><div class="result-card" id="arc-results"><h4>ARC-AGI-3: Human-level Action Efficiency</h4>
+<p>Across 25 public visual games, an agent must discover unfamiliar mechanics and apply them to increasingly complex levels. Schema improves results across all four model configurations. With Claude Fable 5, it raises RHAE from <strong>58.7% to 99.2%</strong> and clears <strong>all 25 games</strong>, compared with 14 for Claude Code.</p><div class="figure-container"><div class="has-text-centered"><img alt="ARC-AGI-3: Schema reaches 86.1, 99.2, 91.8, and 96.7 percent RHAE across Opus 4.8, Fable 5, Sol xhigh, and Sol max." class="zoomable" decoding="async" height="573" loading="lazy" src="assets/figures/arc_results.webp" style="max-width: 100%;" width="2200"/></div><p class="figure-caption"><strong>Consistent gains across base models.</strong> Schema improves action efficiency, game completion, and the fraction of games reaching full RHAE. RHAE measures completion and action efficiency relative to first-time humans, not the percentage of games solved.</p></div></div><div class="result-card" id="dig-results"><h4>DiG-bench: Efficient Mechanism Discovery</h4><p>DiG-bench tests hidden-rule discovery in text-based games with limited lives and action budgets. With GPT-6 Astra, Schema wins <strong>19, 20, and 21 games</strong> at medium, high, and maximum reasoning effort, compared with 11, 16, and 19 for the basic harness. At medium effort, it loses only <strong>34 lives rather than 96</strong>.</p><div class="figure-container"><div class="has-text-centered"><img alt="Schema solves more DiG-bench games and loses fewer lives at every reasoning effort, winning all 21 public games at maximum effort." class="zoomable" decoding="async" height="600" loading="lazy" src="assets/figures/digbench.webp" style="max-width: 100%;" width="2200"/></div><p class="figure-caption"><strong>More games solved, fewer failed attempts.</strong> Schema tests competing explanations before risking lives on new answers.</p></div></div><div class="result-card" id="maze-results"><h4>MazeBench: Knowledge Accumulation over Long Horizons</h4><p>MazeBench is a world of 256 interconnected rooms and 100 gems whose mechanisms must be discovered through interaction. Schema with GPT-6 Astra collects <strong>33 gems</strong> and visits <strong>139 rooms</strong> in 27,819 actions, exceeding the top-50 human median on both metrics.</p><div class="figure-container"><div class="has-text-centered"><img alt="MazeBench progress and room coverage: Schema reaches 139 rooms, compared with 113 for Codex using GPT-6 Astra. Colored cells show the rooms visited by each run." class="zoomable" decoding="async" height="760" loading="lazy" src="assets/figures/maze_progress_coverage.webp" style="max-width: 100%;" width="2200"/></div><p class="figure-caption"><strong>Continued progress and broader coverage.</strong> At 20,673 actions, Schema has 30 gems and 133 rooms, compared with 23 gems and 113 rooms for Codex using the same base model. The coverage maps show each run’s recorded endpoint: <strong>139 of 256 rooms (54.3%)</strong> for Schema and <strong>113 rooms (44.1%)</strong> for Codex. Colored cells mark visited rooms; white circles mark the shared starting room. Dotted lines in the progress plots show the top-50 human median.</p></div></div>
+</div></section><section class="section section-white" id="analysis">
+<div class="container is-max-desktop">
+<h2 class="title is-3 section-title">What Makes Schema Effective?</h2>
+<div class="content has-text-justified"><p>Ablations and behavioral traces show how Schema's components support both discovering mechanisms and retaining them over time.</p></div>
+<div class="result-card"><h4>Contribution of Each Components</h4><p>Replacing the program with prose, or removing certification, planning, or execution-time verification, reduces RHAE from <strong>72.9%</strong> to <strong>52.4–62.3%</strong> on the ten hardest ARC-AGI-3 games.</p>
+<div class="paper-ablation-figure"><img class="zoomable" src="assets/figures/ablation_table_paper.png" alt="Table 1 from the paper. RHAE: Schema 72.9%; prose model 58.8%; without certification 62.3%; without planning 59.2%; without verification 52.4%." width="1117" height="892" loading="lazy" decoding="async"/></div>
+<p class="figure-caption">Claude Opus 4.8 · 10 hardest public games · 75 levels · 2,000 actions per game.</p>
+<div class="figure-container" id="ablation-behavior"><div class="has-text-centered"><img alt="Behavioral traces show effects of program representation, certification, planning, and runtime verification." class="zoomable" decoding="async" height="574" loading="lazy" src="assets/figures/arc_ablation.webp" style="max-width: 100%;" width="2200"/></div><div class="figure-caption ablation-caption">
+<p><strong>(a) Representation — CN04.</strong> Each marker denotes a completed level, plotted against cumulative actions. Executable programs enable faster progress than prose: level 5 takes 279 actions with Schema versus 1,219 with the prose model.</p>
+<p><strong>(b) Certification — AR25.</strong> Each revised program is checked offline against recorded transitions before new actions. Without certification, revisions can break previously correct predictions. Schema’s final program reproduces 99.6% of its interaction history.</p>
+<p><strong>(c) Planning — LS20.</strong> The curves compare level completion with and without search inside the program. On level 5, Schema takes 65 actions versus 233 without planning, even though the latter’s model passes all 252 historical checks at level entry. Gray dashed curves in (a) and (c) show human baselines.</p>
+<p><strong>(d) Verification — ten games.</strong> Each bar shows the percentage of actions executed after the first prediction mismatch within the same committed plan, when execution-time verification is disabled. Aggregated across these games, such continuations account for 58% of all actions.</p>
+</div></div></div><div class="result-card"><h4>Knowledge Compaction and Reuse</h4><p>By approximately 20,000 MazeBench actions, Schema's program contains <strong>2,012 non-comment lines</strong>, compared with 6,133 lines of notes in the prose-model variant. The number of transitions explained per line and function reuse both increase, while forward prediction accuracy remains high.</p><div class="figure-container"><div class="has-text-centered"><img alt="Schema retains growing experience in a compact program with increasing function reuse and high forward prediction accuracy." class="zoomable" decoding="async" height="620" loading="lazy" src="assets/figures/maze_code.webp" style="max-width: 100%;" width="2200"/></div><p class="figure-caption"><strong>Experience accumulates in shared rules.</strong> The program remains compact as the interaction history grows, while preserving predictive value.</p></div></div>
+<div class="result-card case-studies" id="case-studies"><h4>Case Studies</h4>
+<p class="case-intro">Full level replays at the same action pace, with brief pauses and outlines at key moments. Every action is retained, including retries; each completed run holds its final frame.</p>
+<article class="case-study" aria-labelledby="case-representation-title">
+<div class="case-heading"><div class="case-title"><h5 id="case-representation-title">Program induction makes beliefs explicit and reusable.</h5><p class="case-game">CN04 · Level 5</p></div><button class="case-toggle" type="button" aria-label="Pause representation comparison">Pause</button></div>
+<div class="case-labels" aria-hidden="true"><span class="case-label-primary">Schema</span><span>Prose model</span></div>
+<figure class="case-media"><img class="case-gif" src="assets/cases/representation_full_3x.png" data-gif="assets/cases/representation_full_3x.gif" data-poster="assets/cases/representation_full_3x.png" alt="Full recorded CN04 Level 5 replays: Schema on the left, prose model on the right, with key moments briefly outlined." width="2376" height="1278" loading="lazy" decoding="async"/></figure>
+<p class="case-caption">Pieces grow, rotate, and connect under changing geometric constraints. Schema completes the full level in 279 actions versus 1,219 with a prose model. The pauses highlight the same piece before and after growth.</p>
+</article>
+<article class="case-study" aria-labelledby="case-certification-title">
+<div class="case-heading"><div class="case-title"><h5 id="case-certification-title">Certification helps the agent validate hypothesis correctness.</h5><p class="case-game">AR25 · Level 3</p></div><button class="case-toggle" type="button" aria-label="Pause certification comparison">Pause</button></div>
+<div class="case-labels" aria-hidden="true"><span class="case-label-primary">Schema</span><span>Without certification</span></div>
+<figure class="case-media"><img class="case-gif" src="assets/cases/certification_full_3x.png" data-gif="assets/cases/certification_full_3x.gif" data-poster="assets/cases/certification_full_3x.png" alt="Full recorded AR25 Level 3 replays: Schema on the left, without certification on the right, with key moments briefly outlined." width="2376" height="1278" loading="lazy" decoding="async"/></figure>
+<p class="case-caption">Both runs complete this level in 41 actions. The pause marks an active-piece rule revision without certification: current-level predictions improve, but offline replay reveals that history agreement falls from 97.7% to 65.2%. Schema’s final model reproduces 99.6% of its history.</p>
+</article>
+<article class="case-study" aria-labelledby="case-planning-title">
+<div class="case-heading"><div class="case-title"><h5 id="case-planning-title">Planning ahead improves action efficiency.</h5><p class="case-game">LS20 · Level 5</p></div><button class="case-toggle" type="button" aria-label="Pause planning comparison">Pause</button></div>
+<div class="case-labels" aria-hidden="true"><span class="case-label-primary">Schema</span><span>Without planning</span></div>
+<figure class="case-media"><img class="case-gif" src="assets/cases/planning_full_3x.png" data-gif="assets/cases/planning_full_3x.gif" data-poster="assets/cases/planning_full_3x.png" alt="Full recorded LS20 Level 5 replays: Schema on the left, without planning on the right, with key moments briefly outlined." width="2376" height="1278" loading="lazy" decoding="async"/></figure>
+<p class="case-caption">Schema completes the level in 65 actions versus 233 without planning, whose model passes all 252 historical checks at level entry. The outlines compare the carried symbol with its target: the first two actions of Schema’s final 13-action plan make them match.</p>
+</article>
+<article class="case-study" aria-labelledby="case-verification-title">
+<div class="case-heading"><div class="case-title"><h5 id="case-verification-title">Runtime verification further boosts adaptation to new scenarios.</h5><p class="case-game">LS20 · Level 2</p></div><button class="case-toggle" type="button" aria-label="Pause verification comparison">Pause</button></div>
+<div class="case-labels" aria-hidden="true"><span class="case-label-primary">Schema</span><span>Without verification</span></div>
+<figure class="case-media"><img class="case-gif" src="assets/cases/verification_full_3x.png" data-gif="assets/cases/verification_full_3x.gif" data-poster="assets/cases/verification_full_3x.png" alt="Full recorded LS20 Level 2 replays: Schema on the left, without verification on the right, with key moments briefly outlined." width="2376" height="1278" loading="lazy" decoding="async"/></figure>
+<p class="case-caption">Schema completes the level in 59 actions versus 143 without verification. On the right, the station disappears at the first action of a committed plan, contradicting the model. The remaining 42 actions still execute; the agent revisits the spent station and runs out of energy. The replay retains the reset and eventual completion.</p>
+</article>
+</div>
+</div></section><section class="section section-gray" id="videos"><div class="container is-max-desktop">
+<h2 class="title is-3 section-title">Gameplay Videos</h2>
+<p>Explore all 25 ARC-AGI-3 runs, all 21 DiG-bench games, and the full MazeBench replay. Select a game below to watch Schema learn and act, with observed game states and progress from the recorded runs.</p>
+<div aria-label="Gameplay benchmark" class="video-tabs" role="tablist">
+<button aria-controls="video-arc" aria-selected="true" id="tab-arc" role="tab" tabindex="0">ARC-AGI-3</button>
+<button aria-controls="video-dig" aria-selected="false" id="tab-dig" role="tab" tabindex="-1">DiG-bench</button>
+<button aria-controls="video-maze" aria-selected="false" id="tab-maze" role="tab" tabindex="-1">MazeBench</button>
+</div>
+<div aria-labelledby="tab-arc" class="video-panel" id="video-arc" role="tabpanel">
+<div class="video-toolbar"><p>Schema · Claude Fable 5</p><label for="arc-game">Game (25)<select id="arc-game">
+<option value="ar25" data-game="AR25" data-caption="AR25: full recorded run with Schema and Claude Fable 5.">AR25</option>
+<option value="bp35" data-game="BP35" data-caption="BP35: full recorded run with Schema and Claude Fable 5.">BP35</option>
+<option value="cd82" data-game="CD82" data-caption="CD82: full recorded run with Schema and Claude Fable 5.">CD82</option>
+<option value="cn04" data-game="CN04" data-caption="CN04: full recorded run with Schema and Claude Fable 5.">CN04</option>
+<option value="dc22" data-game="DC22" data-caption="DC22: full recorded run with Schema and Claude Fable 5.">DC22</option>
+<option value="ft09" data-game="FT09" data-caption="FT09: discover how clicking a tile changes its neighbors, encode the interaction rule, and solve the game through program-guided planning.">FT09</option>
+<option value="g50t" data-game="G50T" data-caption="G50T: full recorded run with Schema and Claude Fable 5.">G50T</option>
+<option value="ka59" data-game="KA59" data-caption="KA59: full recorded run with Schema and Claude Fable 5.">KA59</option>
+<option value="lf52" data-game="LF52" data-caption="LF52: full recorded run with Schema and Claude Fable 5.">LF52</option>
+<option value="lp85" data-game="LP85" data-caption="LP85: full recorded run with Schema and Claude Fable 5.">LP85</option>
+<option value="ls20" data-game="LS20" data-caption="LS20: discover movement, symbol transformations, and energy constraints, then reuse the program to plan through all seven levels." selected="">LS20</option>
+<option value="m0r0" data-game="M0R0" data-caption="M0R0: full recorded run with Schema and Claude Fable 5.">M0R0</option>
+<option value="r11l" data-game="R11L" data-caption="R11L: full recorded run with Schema and Claude Fable 5.">R11L</option>
+<option value="re86" data-game="RE86" data-caption="RE86: full recorded run with Schema and Claude Fable 5.">RE86</option>
+<option value="s5i5" data-game="S5I5" data-caption="S5I5: full recorded run with Schema and Claude Fable 5.">S5I5</option>
+<option value="sb26" data-game="SB26" data-caption="SB26: full recorded run with Schema and Claude Fable 5.">SB26</option>
+<option value="sc25" data-game="SC25" data-caption="SC25: full recorded run with Schema and Claude Fable 5.">SC25</option>
+<option value="sk48" data-game="SK48" data-caption="SK48: full recorded run with Schema and Claude Fable 5.">SK48</option>
+<option value="sp80" data-game="SP80" data-caption="SP80: full recorded run with Schema and Claude Fable 5.">SP80</option>
+<option value="su15" data-game="SU15" data-caption="SU15: full recorded run with Schema and Claude Fable 5.">SU15</option>
+<option value="tn36" data-game="TN36" data-caption="TN36: full recorded run with Schema and Claude Fable 5.">TN36</option>
+<option value="tr87" data-game="TR87" data-caption="TR87: full recorded run with Schema and Claude Fable 5.">TR87</option>
+<option value="tu93" data-game="TU93" data-caption="TU93: full recorded run with Schema and Claude Fable 5.">TU93</option>
+<option value="vc33" data-game="VC33" data-caption="VC33: full recorded run with Schema and Claude Fable 5.">VC33</option>
+<option value="wa30" data-game="WA30" data-caption="WA30: full recorded run with Schema and Claude Fable 5.">WA30</option>
+</select></label></div>
+<video aria-label="Schema gameplay on ARC-AGI-3" controls="" id="arc-video" playsinline="" poster="assets/posters/arc3_fable5_ls20.jpg" preload="none" src="assets/videos/arc3_fable5_ls20.mp4"><p>Your browser does not support video playback. <a href="assets/videos/arc3_fable5_ls20.mp4">Download the LS20 replay</a>.</p></video>
+<p class="video-caption" id="arc-caption">LS20: discover movement, symbol transformations, and energy constraints, then reuse the program to plan through all seven levels.</p>
+</div>
+<div aria-labelledby="tab-dig" class="video-panel" hidden="" id="video-dig" role="tabpanel">
+<div class="video-toolbar"><p>Schema · GPT-6 Astra</p><label for="dig-game">Game (21)<select id="dig-game">
+<option value="P-01" data-game="P-1" data-caption="P-1: full recorded run with Schema and GPT-6 Astra.">P-1</option>
+<option value="P-02" data-game="P-2" data-caption="P-2: full recorded run with Schema and GPT-6 Astra.">P-2</option>
+<option value="P-03" data-game="P-3" data-caption="P-3: query strings to distinguish possible acceptance rules, then apply the discovered mechanism to classify new strings without losing lives." selected="">P-3</option>
+<option value="P-04" data-game="P-4" data-caption="P-4: full recorded run with Schema and GPT-6 Astra.">P-4</option>
+<option value="P-05" data-game="P-5" data-caption="P-5: full recorded run with Schema and GPT-6 Astra.">P-5</option>
+<option value="P-06" data-game="P-6" data-caption="P-6: full recorded run with Schema and GPT-6 Astra.">P-6</option>
+<option value="P-07" data-game="P-7" data-caption="P-7: full recorded run with Schema and GPT-6 Astra.">P-7</option>
+<option value="P-08" data-game="P-8" data-caption="P-8: full recorded run with Schema and GPT-6 Astra.">P-8</option>
+<option value="P-09" data-game="P-9" data-caption="P-9: full recorded run with Schema and GPT-6 Astra.">P-9</option>
+<option value="P-10" data-game="P-10" data-caption="P-10: full recorded run with Schema and GPT-6 Astra.">P-10</option>
+<option value="P-11" data-game="P-11" data-caption="P-11: full recorded run with Schema and GPT-6 Astra.">P-11</option>
+<option value="P-12" data-game="P-12" data-caption="P-12: full recorded run with Schema and GPT-6 Astra.">P-12</option>
+<option value="P-13" data-game="P-13" data-caption="P-13: full recorded run with Schema and GPT-6 Astra.">P-13</option>
+<option value="P-14" data-game="P-14" data-caption="P-14: full recorded run with Schema and GPT-6 Astra.">P-14</option>
+<option value="P-15" data-game="P-15" data-caption="P-15: full recorded run with Schema and GPT-6 Astra.">P-15</option>
+<option value="P-16" data-game="P-16" data-caption="P-16: full recorded run with Schema and GPT-6 Astra.">P-16</option>
+<option value="P-17" data-game="P-17" data-caption="P-17: full recorded run with Schema and GPT-6 Astra.">P-17</option>
+<option value="P-18" data-game="P-18" data-caption="P-18: full recorded run with Schema and GPT-6 Astra.">P-18</option>
+<option value="P-19" data-game="P-19" data-caption="P-19: full recorded run with Schema and GPT-6 Astra.">P-19</option>
+<option value="P-20" data-game="P-20" data-caption="P-20: full recorded run with Schema and GPT-6 Astra.">P-20</option>
+<option value="P-21" data-game="P-21" data-caption="P-21: full recorded run with Schema and GPT-6 Astra.">P-21</option>
+</select></label></div>
+<video aria-label="Schema gameplay on DiG-bench P-3" controls="" id="dig-video" playsinline="" poster="assets/posters/digbench_schema_P-03.jpg" preload="none" src="assets/videos/digbench_schema_P-03.mp4"><p>Your browser does not support video playback. <a href="assets/videos/digbench_schema_P-03.mp4">Download the P-3 replay</a>.</p></video>
+<p class="video-caption" id="dig-caption">P-3: query strings to distinguish possible acceptance rules, then apply the discovered mechanism to classify new strings without losing lives.</p>
+</div>
+<div aria-labelledby="tab-maze" class="video-panel" hidden="" id="video-maze" role="tabpanel">
+<div class="video-toolbar"><p>Schema · GPT-6 Astra</p><p>Full run · 33 gems · 139 rooms</p></div>
+<video aria-label="Schema full-run replay on MazeBench" controls="" playsinline="" poster="assets/posters/mazebench_schema_full_run.jpg" preload="none" src="assets/videos/mazebench_schema_full_run.mp4"><p>Your browser does not support video playback. <a href="assets/videos/mazebench_schema_full_run.mp4">Download the MazeBench replay</a>.</p></video>
+<p class="video-caption">A condensed replay of Schema’s exploration run. Schema discovers room mechanics, plans routes, and reuses previously learned rules in new parts of the world.</p>
+</div>
+</div></section><section class="section section-gray" id="BibTeX"><div class="container is-max-desktop content"><h2 class="title is-3 section-title">BibTeX</h2><div class="bibtex-box"><div class="bibtex-toolbar"><button class="citation-copy" id="copy-citation" type="button">Copy BibTeX</button></div><pre><code id="citation">@misc{zeng2026schema,
+  title={Schema: Discovering Unknown Environments via Agentic Program Induction},
+  author={Guanning Zeng and Jiani Wang and Wenjie Ma and Shaofeng Yin and Chenyang Wang and Shichen Liu and
+          Angjoo Kanazawa and Wode Ni and Xiuyu Li and Andrea Zanette and Haiwen Feng},
+  year={2026},
+  eprint={2609.39140},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2609.39140}
+}</code></pre></div><span aria-live="polite" class="visually-hidden" id="copy-status"></span></div></section></main><footer class="footer" id="footer"><div class="container"><div class="footer-logos" aria-label="Research institutions">
+<span class="footer-logo footer-logo-wordmark"><img alt="Impossible Research" decoding="async" loading="lazy" src="static/images/impossible_logo.png" width="993" height="343"/></span>
+<a class="footer-logo footer-logo-wordmark" href="https://www.berkeley.edu/" rel="noopener noreferrer" target="_blank"><img alt="University of California, Berkeley" decoding="async" loading="lazy" src="static/images/berkeley_logo.png" width="1000" height="315"/></a>
+<a class="footer-logo footer-logo-wordmark" href="https://www.cmu.edu/" rel="noopener noreferrer" target="_blank"><img alt="Carnegie Mellon University" decoding="async" loading="lazy" src="static/images/cmu_wordmark.png" width="4910" height="1341"/></a>
+</div><div class="columns is-centered"><p class="has-text-centered">Schema · Impossible Research · UC Berkeley · Carnegie Mellon University<br/>Template adapted from <a href="https://zanette-labs.github.io/MaxRL/" rel="noopener noreferrer" target="_blank">MaxRL</a> and <a href="https://github.com/nerfies/nerfies.github.io" rel="noopener noreferrer" target="_blank">Nerfies</a>.<br/><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener noreferrer" target="_blank">Website template: CC BY-SA 4.0</a></p></div></div></footer><dialog aria-label="Enlarged paper figure" class="figure-dialog" id="figure-dialog"><button aria-label="Close enlarged figure" class="dialog-close" id="close-figure" type="button">Close</button><img alt="" id="enlarged-figure"/></dialog></body>
+</html>
