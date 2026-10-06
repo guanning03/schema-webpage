@@ -16,10 +16,10 @@ button, select { font: inherit; }
 .ablation-caption { text-align: left; }
 .ablation-caption p { margin: .6rem 0; line-height: 1.7; }
 .case-study { border-top: 1px solid #e5e7eb; padding-top: 1.75rem; margin-top: 2rem; }
+.case-studies > h4 { font-size: 1.5rem; line-height: 1.4; margin-bottom: 1.5rem; }
 .case-studies > .case-study:first-of-type { border-top: 0; padding-top: .5rem; margin-top: 0; }
 .case-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 1.25rem; }
 .case-title { min-width: 0; }
-.case-intro { color: #6b7280; font-size: .9rem; line-height: 1.7; margin-bottom: 1.5rem; }
 .case-title h5 { color: #1f2937; font-size: 1.1rem; font-weight: 600; line-height: 1.4; margin: 0; }
 .case-game { color: #6b7280; font-size: .85rem; margin: 3px 0 0; }
 .case-toggle { cursor: pointer; flex-shrink: 0; border: 1px solid #d1d5db; border-radius: 999px; padding: 5px 15px; background: #fff; color: #4b5563; font-size: .8rem; }
@@ -77,6 +77,7 @@ footer.footer .footer-logos img { display: block; height: auto; max-height: 100%
   .video-toolbar label { display: flex; align-items: center; width: 100%; }
   .video-toolbar select { min-width: 0; flex: 1; }
   .case-heading { gap: 8px; }
+  .case-studies > h4 { font-size: 1.35rem; }
   .case-title h5 { font-size: 1rem; }
   .case-labels { font-size: .75rem; }
   .case-caption { font-size: .85rem; }
