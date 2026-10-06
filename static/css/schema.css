@@ -23,8 +23,8 @@ button, select { font: inherit; }
 .case-title { min-width: 0; }
 .case-title h5 { color: #1f2937; font-size: 1.1rem; font-weight: 600; line-height: 1.4; margin: 0; }
 .case-game { color: #6b7280; font-size: .85rem; margin: 3px 0 0; }
-.case-toggle { cursor: pointer; flex-shrink: 0; display: grid; place-items: center; width: 32px; height: 32px; padding: 6px; border: 0; border-radius: 0; background: transparent; color: #6b7280; }
-.case-toggle:hover { color: #1f2937; }
+.case-toggle { cursor: pointer; flex-shrink: 0; display: grid; place-items: center; width: 34px; height: 34px; padding: 7px; border: 1px solid #9ca3af; border-radius: 50%; background: #fff; color: #4b5563; }
+.case-toggle:hover { color: #1f2937; border-color: #4b5563; background: #f9fafb; }
 .case-toggle svg { display: block; width: 18px; height: 18px; }
 .case-toggle[data-paused="false"] .case-icon-play,
 .case-toggle[data-paused="true"] .case-icon-pause { display: none; }
