@@ -34,8 +34,8 @@
   {
     "number": 4,
     "title": "实例：用新证据修正理论",
-    "text": "In LS20, a refueling station disappears after use.\n\nSchema catches the failed prediction, learns that stations are single-use, and replans.\n\nWithout verification, 42 more actions execute—including a return to the spent station. The agent runs out of energy.",
-    "weighted_characters": 257,
+    "text": "For example, in ARC3 LS20, a refueling station disappears after use.\n\nSchema catches the failed prediction, learns that stations are single-use, and replans.\n\nWithout verification, 42 more actions execute—including a return to the spent station. The agent runs out of energy.",
+    "weighted_characters": 275,
     "media": "assets/04-theory-revision.mp4",
     "alt": "Complete LS20 level 2 replays, at the same action pace. Schema learns that refueling stations are single-use and finishes in 59 actions. Without runtime verification, the agent executes 42 further actions after a failed prediction, returns to a spent station, runs out of energy, and finishes after a reset in 143 actions. Short holds and red outlines mark the evidence.",
     "poster": "assets/04-theory-revision-poster.png",

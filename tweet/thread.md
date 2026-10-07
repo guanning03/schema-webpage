@@ -55,14 +55,14 @@ One evolving program connects these decisions: checked against experience and us
 ## 4. 实例：用新证据修正理论
 
 ```text
-In LS20, a refueling station disappears after use.
+For example, in ARC3 LS20, a refueling station disappears after use.
 
 Schema catches the failed prediction, learns that stations are single-use, and replans.
 
 Without verification, 42 more actions execute—including a return to the spent station. The agent runs out of energy.
 ```
 
-**字符数：** 257 / 280。
+**字符数：** 275 / 280。
 
 **媒体：** [04-theory-revision.mp4](assets/04-theory-revision.mp4)
 

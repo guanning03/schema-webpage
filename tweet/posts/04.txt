@@ -1,4 +1,4 @@
-In LS20, a refueling station disappears after use.
+For example, in ARC3 LS20, a refueling station disappears after use.
 
 Schema catches the failed prediction, learns that stations are single-use, and replans.
 
