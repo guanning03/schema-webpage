@@ -1,6 +1,7 @@
 """Animate the causal order inside Figure 2, including stopping and revision."""
 from pathlib import Path
 import json
+import math
 import subprocess
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -106,13 +107,14 @@ def ease(t, start, duration=.22):
 font_path=ROOT.parent/"static/fonts/castoro.ttf"
 font=ImageFont.truetype(str(font_path),round(25*W/2048))
 fps=30
-duration=10.5
+playback_speed=.8
+duration=10.5/playback_speed
 cmd=["ffmpeg","-hide_banner","-loglevel","error","-y","-f","rawvideo","-pix_fmt","rgb24","-s",f"{W}x{H}","-r",str(fps),"-i","-","-an","-c:v","libx264","-preset","fast","-crf","15","-pix_fmt","yuv420p","-threads","2","-movflags","+faststart",str(ASSETS/"03-method-animation.mp4")]
-snapshots={round(t*fps):t for t in [1.25,1.75,2.2,2.65,4.65,5.05,5.4,5.72,6.03,6.65,7.15,7.65,8.15,9.5]}
+snapshots={round(t/playback_speed*fps):t/playback_speed for t in [1.25,1.75,2.2,2.65,4.65,5.05,5.4,5.72,6.03,6.65,7.15,7.65,8.15,9.5]}
 with subprocess.Popen(cmd,stdin=subprocess.PIPE) as proc:
     delta=255-pixels
-    for i in range(round(duration*fps)):
-        t=i/fps
+    for i in range(math.ceil(duration*fps)):
+        t=i/fps*playback_speed
         alpha=ease(t,reveal)
         frame=255-delta*alpha[:,:,None]
         # Keep the unrevised code block dark rather than opening a white hole.
@@ -134,6 +136,10 @@ with subprocess.Popen(cmd,stdin=subprocess.PIPE) as proc:
     proc.wait()
     assert proc.returncode==0
 
-timeline={"version":2,"source":"paper_arxiv/figures/schema_method.pdf","duration_seconds":duration,"default_fade_seconds":.22,"stages":stages,"final_hold_seconds":2.3,"notes":"History states and execution actions appear sequentially. Prediction precedes observation; mismatch stops and discards remaining actions. The counterexample follows the revision arrow, then reveals the program patch. Temporary counterexample annotation fades before the final unchanged figure."}
+for stage in stages:
+    for key in ("start","end"):
+        if key in stage:
+            stage[key]=round(stage[key]/playback_speed,4)
+timeline={"version":3,"source":"paper_arxiv/figures/schema_method.pdf","duration_seconds":duration,"playback_speed_relative_to_v2":playback_speed,"default_fade_seconds":.22/playback_speed,"stages":stages,"final_hold_seconds":2.3/playback_speed,"notes":"Version 2 sequence played at 0.8x speed. History states and execution actions appear sequentially. Prediction precedes observation; mismatch stops and discards remaining actions. The counterexample follows the revision arrow, then reveals the program patch. Temporary counterexample annotation fades before the final unchanged figure."}
 (ASSETS/"03-method-animation-timeline.json").write_text(json.dumps(timeline,ensure_ascii=False,indent=2)+"\n")
 print(f"Exported ordered Figure 2 animation: {duration}s; {len(stages)} timed elements.")

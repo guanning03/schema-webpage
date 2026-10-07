@@ -1,6 +1,6 @@
 # Schema — Paper Release Thread
 
-10 条英文帖文及配套素材。代码块内为可直接复制的正文。第 1 条引用原发布 tweet，第 2 条放 Figure 1，第 3 条放 Figure 2 动画，第 5–7 条各配一段游戏视频，第 9 条讨论设计原则，第 10 条为资源与团队。
+10 条英文帖文及配套素材。代码块内为可直接复制的正文。第 1 条引用原发布 tweet，第 2 条放 Figure 1 动画，第 3 条放 Figure 2 动画，第 5–7 条各配一段游戏视频，第 9 条讨论设计原则，第 10 条为资源与团队。
 
 ## 1. 从首次发布引出完整论文
 
@@ -28,29 +28,29 @@ Schema brings this process to agents exploring unfamiliar environments.
 
 **字符数：** 236 / 280。
 
-**媒体：** [02-paper-figure1.png](assets/02-paper-figure1.png)
+**媒体：** [02-overview-animation.mp4](assets/02-overview-animation.mp4)
 
-**ALT / 描述：** Paper Figure 1. The agent observes an unfamiliar environment, induces an executable program, and uses it to plan and act. The bottom panels summarize ARC-AGI-3, DiG-bench, and MazeBench results.
+**ALT / 描述：** Paper Figure 1 animated in sequence: Observe, Induce a program, and Plan & Act appear from left to right. The return arrows lead back to Observe, then all three benchmark result panels fade in together. The complete original figure holds at the end.
 
-**制作备注：** 论文 Figure 1 原图。下方 DiG-bench 面板采用论文总览图原始配置的 90.5% 结果，正文的全部 21 个游戏来自另一组已注明的配置；不改动论文原图。
+**制作备注：** 8.5-second animation: left panel, middle panel, right panel, return arrows to the left, then all three result panels together. The complete original figure holds for 3.35 seconds. DiG-bench retains the original Figure 1 configuration (90.5%); the 21-game result in post 6 uses another paper configuration.
 
 ## 3. 方法：持续演化的可执行理论
 
 ```text
-Schema makes the theory executable.
+Schema lets the agent direct its own learning.
 
-The agent writes and revises a persistent program, tests it against all recorded experience, and uses it to design experiments and plans.
+It decides what to test, how to represent the world, when to revise its theory, and how to plan.
 
-During execution, a prediction mismatch stops the plan and returns new evidence.
+One evolving program connects these decisions: checked against experience and used for experiments and planning.
 ```
 
-**字符数：** 256 / 280。
+**字符数：** 258 / 280。
 
 **媒体：** [03-method-animation.mp4](assets/03-method-animation.mp4)
 
 **ALT / 描述：** Paper Figure 2 animated in causal order. Recorded history states are checked one by one before certification. Actions execute sequentially. The next predicted observation appears before the actual outcome. A mismatch stops execution and discards the remaining actions. The observed counterexample returns along the revision arrow, and the program gains a new code patch.
 
-**制作备注：** 10.5-second animation. History states, execution actions, mismatch, discarded actions, counterexample feedback, and program revision appear in order. The complete figure holds at the end.
+**制作备注：** 13.13-second animation, slowed to 0.8x the previous version. History states, execution actions, mismatch, discarded actions, counterexample feedback, and program revision retain their original order. The complete figure holds at the end.
 
 ## 4. 实例：用新证据修正理论
 
@@ -135,19 +135,17 @@ Replacing code with prose, or removing certification, planning, or runtime verif
 
 **ALT / 描述：** Original paper ablation table. Ten hardest ARC-AGI-3 games, Claude Opus 4.8. Overall RHAE: full Schema 72.9%; without certification 62.3%; without planning 59.2%; without runtime verification 52.4%; prose-model variant 58.8%. Per-game level progress appears above the aggregate metrics.
 
-## 9. 讨论：以更少交互学习紧凑知识
+## 9. 讨论：通用架构与未来展望
 
 ```text
-Schema seeks compact, informative knowledge from minimal interaction.
+Schema organizes learning around one evolving executable theory, tested against all experience and used for experimentation and planning.
 
-Beyond WorldCoder’s predefined loop, frontier LLMs direct the full learning process: experiments, model revision, and planning.
-
-Could this principle extend to embodied AI and automated research?
+As frontier LLMs advance, we believe this approach will become a powerful agentic paradigm for a wider range of real-world tasks!
 ```
 
-**字符数：** 266 / 280。
+**字符数：** 268 / 280。
 
-**制作备注：** 目标是高信息量、紧凑、可复用的知识与交互效率。区别在于 LLM 主导实验、理论修正与规划的完整学习过程。Embodied AI 和自动科研属于设计原则的潜在应用，而非本文已验证的结果。
+**制作备注：** 以持续演化的同一个可执行理论组织学习，接受全部经验的检验，并直接用于实验与规划。随着 frontier LLM 能力进步，期待这一 agentic paradigm 在更多现实任务中发挥作用；后者为未来展望。
 
 ## 10. 论文、代码与团队
 
@@ -166,11 +164,11 @@ Team: @guanningzeng @Jiani_Wang_ @wenjie_ma @shaofeng_y27736 @ChenyangWa70207 @l
 - 首帖用 Quote Post 引用旧 tweet，然后第 2–10 条依次回复上一条。正文已控制在 280 加权字符以内，链接按 23 字符折算。
 - 首帖 July 15 为博客 release 日期，被引用的 Haven 公告发表于 July 16。
 - 首帖保留首次 release 的约 99% 历史结果；第 5 条为完整论文的 Claude Fable 5 结果：58.7% → 99.2% RHAE，14 → 25 个游戏通关。
-- Figure 1 为论文原图；其中 DiG-bench 面板对应 90.5% 配置。第 6 条全部 21 个游戏的结果来自论文另一组配置。DiG-bench 的生命损失在三组配置分别为 Basic → Schema：96 → 34、52 → 29、32 → 25。公开媒体只显示模型名。
+- Figure 1 动画分步展示论文原图，最终完整保留原图；其中 DiG-bench 面板对应 90.5% 配置。第 6 条全部 21 个游戏的结果来自论文另一组配置。DiG-bench 的生命损失在三组配置分别为 Basic → Schema：96 → 34、52 → 29、32 → 25。公开媒体只显示模型名。
 - 第 4 条来自 Claude Opus 4.8 的 LS20 Level 2 消融：Schema 59 动作，Without verification 143 动作。没有删除重试或后续动作。
 - 第 7 条视频的终点为 33 gems / 139 rooms；人类 top-50 中位数是 29 / 137。视频对完整轨迹加速，保留开头和结尾。第 8 条为 Claude Opus 4.8、10 个最难游戏的消融原表。
-- 第 9 条提出设计目标和可能的延伸方向，不声称已经在 embodied AI 或 automated research 中验证。与 WorldCoder 的区别限定于学习过程的控制权：WorldCoder 使用预定义的 REx 程序搜索过程；Schema 让 agent 决定实验、模型修正和规划。依据：[论文 related work](https://arxiv.org/abs/2609.39140)、[WorldCoder 原论文](https://openreview.net/pdf?id=QGJSXMhVaL)。
-- 可执行世界模型本身也用于 WorldCoder 等工作；第 9 条不将该思想描述为 Schema 独有。
+- 第 3 条突出 agent 对实验、状态表示、理论修正和规划的决策权，以及连接这些操作的持续演化程序。依据：论文方法章节。
+- 第 9 条强调同一个可执行理论接受历史经验检验、并用于实验与规划，再展望这一架构随 frontier LLM 进步在更多现实任务中的潜力。依据：[论文方法及 Implementation Details](https://arxiv.org/abs/2609.39140)。
 - 这是本地预览和素材包，尚未发布到 X。
 
 ## 来源

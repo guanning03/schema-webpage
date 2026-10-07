@@ -13,12 +13,12 @@ Today, we’re sharing the full paper and code, with new results and a closer lo
 
 Scientists turn observations into theories, test their predictions, and revise them with new evidence.
 
-Schema brings this process to agents exploring unfamiliar environments.</p><div class="media"><a class="image" href="assets/02-paper-figure1.png?v=44664dfae3a7" target="_blank" rel="noopener noreferrer"><img src="assets/02-paper-figure1.png?v=44664dfae3a7" alt="Paper Figure 1. The agent observes an unfamiliar environment, induces an executable program, and uses it to plan and act. The bottom panels summarize ARC-AGI-3, DiG-bench, and MazeBench results." loading="lazy"></a></div></article>
-<article id="post-3"><p class="tweet">Schema makes the theory executable.
+Schema brings this process to agents exploring unfamiliar environments.</p><div class="media"><video controls playsinline preload="metadata" muted loop data-animation="true" poster="assets/02-paper-figure1.png?v=44664dfae3a7" aria-label="Paper Figure 1 animated in sequence: Observe, Induce a program, and Plan &amp; Act appear from left to right. The return arrows lead back to Observe, then all three benchmark result panels fade in together. The complete original figure holds at the end."><source src="assets/02-overview-animation.mp4?v=0738794ffbb7" type="video/mp4"></video></div></article>
+<article id="post-3"><p class="tweet">Schema lets the agent direct its own learning.
 
-The agent writes and revises a persistent program, tests it against all recorded experience, and uses it to design experiments and plans.
+It decides what to test, how to represent the world, when to revise its theory, and how to plan.
 
-During execution, a prediction mismatch stops the plan and returns new evidence.</p><div class="media"><video controls playsinline preload="metadata" muted loop data-animation="true" poster="assets/03-method-animation-poster.png?v=d39c05be40f3" aria-label="Paper Figure 2 animated in causal order. Recorded history states are checked one by one before certification. Actions execute sequentially. The next predicted observation appears before the actual outcome. A mismatch stops execution and discards the remaining actions. The observed counterexample returns along the revision arrow, and the program gains a new code patch."><source src="assets/03-method-animation.mp4?v=81caa0e72ebd" type="video/mp4"></video></div></article>
+One evolving program connects these decisions: checked against experience and used for experiments and planning.</p><div class="media"><video controls playsinline preload="metadata" muted loop data-animation="true" poster="assets/03-method-animation-poster.png?v=d39c05be40f3" aria-label="Paper Figure 2 animated in causal order. Recorded history states are checked one by one before certification. Actions execute sequentially. The next predicted observation appears before the actual outcome. A mismatch stops execution and discards the remaining actions. The observed counterexample returns along the revision arrow, and the program gains a new code patch."><source src="assets/03-method-animation.mp4?v=3ea40cc87c12" type="video/mp4"></video></div></article>
 <article id="post-4"><p class="tweet">In LS20, a refueling station disappears after use.
 
 Schema catches the failed prediction, learns that stations are single-use, and replans.
@@ -41,11 +41,9 @@ We ablate Schema on the 10 hardest ARC-AGI-3 games using Claude Opus 4.8.
 
 Full Schema: 72.9% RHAE.
 Replacing code with prose, or removing certification, planning, or runtime verification: 52.4–62.3%.</p><div class="media"><a class="image" href="assets/08-ablation.png?v=84525469e00b" target="_blank" rel="noopener noreferrer"><img src="assets/08-ablation.png?v=84525469e00b" alt="Original paper ablation table. Ten hardest ARC-AGI-3 games, Claude Opus 4.8. Overall RHAE: full Schema 72.9%; without certification 62.3%; without planning 59.2%; without runtime verification 52.4%; prose-model variant 58.8%. Per-game level progress appears above the aggregate metrics." loading="lazy"></a></div></article>
-<article id="post-9"><p class="tweet">Schema seeks compact, informative knowledge from minimal interaction.
+<article id="post-9"><p class="tweet">Schema organizes learning around one evolving executable theory, tested against all experience and used for experimentation and planning.
 
-Beyond WorldCoder’s predefined loop, frontier LLMs direct the full learning process: experiments, model revision, and planning.
-
-Could this principle extend to embodied AI and automated research?</p><div class="media"></div></article>
+As frontier LLMs advance, we believe this approach will become a powerful agentic paradigm for a wider range of real-world tasks!</p><div class="media"></div></article>
 <article id="post-10"><p class="tweet">Paper: <a href="https://arxiv.org/abs/2609.39140" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.39140</a>
 Code: <a href="https://github.com/guanning03/Schema" target="_blank" rel="noopener noreferrer">https://github.com/guanning03/Schema</a>
 Replays: <a href="https://guanning03.github.io/schema-webpage/" target="_blank" rel="noopener noreferrer">https://guanning03.github.io/schema-webpage/</a>

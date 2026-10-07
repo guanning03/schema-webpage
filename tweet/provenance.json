@@ -76,12 +76,13 @@
   "weighted_character_counts": [
     234,
     236,
-    256,
+    258,
     257,
     239,
     244,
     254,
     226,
+    268,
     241
   ],
   "current_thread": {
@@ -96,7 +97,7 @@
     },
     "03-method-animation.mp4": {
       "source": "paper_arxiv/figures/schema_method.pdf",
-      "operation": "Version 2: 10.5-second causal sequence with history checks and actions revealed individually; mismatch, discarded actions, observed counterexample, return arrow, and code revision are shown in order. A temporary counterexample outline and label disappear before the final original figure.",
+      "operation": "Version 3: the complete version 2 animation rendered at 0.8x speed (13.13 seconds). The ordered history checks, execution actions, mismatch, discarded actions, counterexample feedback, and program revision are preserved.",
       "timeline": "assets/03-method-animation-timeline.json"
     },
     "05-arc-gameplay.mp4": {
@@ -110,10 +111,15 @@
     "07-maze-gameplay.mp4": {
       "source": "schema-webpage/assets/videos/mazebench_schema_full_run.mp4",
       "operation": "Full trajectory at 4x source replay speed; first 2.5 seconds and final hold remain at original speed"
+    },
+    "02-overview-animation.mp4": {
+      "source": "paper_arxiv/figures/teaser.pdf",
+      "operation": "8.5-second animation: top panels appear left to right, followed by the return arrows to observation, then all three benchmark result panels. The complete original figure is held for 3.35 seconds.",
+      "timeline": "assets/02-overview-animation-timeline.json"
     }
   },
   "discussion_sources": [
-    "paper_arxiv/main.tex:484–490",
-    "https://openreview.net/pdf?id=QGJSXMhVaL"
+    "paper_arxiv/main.tex:195–271",
+    "paper_arxiv/main.tex:594–656"
   ]
 }

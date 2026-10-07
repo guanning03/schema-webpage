@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "source": "paper_arxiv/figures/teaser.pdf",
+  "duration_seconds": 8.5,
+  "stages": [
+    {
+      "element": "left: observe",
+      "start": 0,
+      "end": 0.5,
+      "transition": "fade"
+    },
+    {
+      "element": "middle: induce a program",
+      "start": 1.05,
+      "end": 1.55,
+      "transition": "fade"
+    },
+    {
+      "element": "right: plan and act",
+      "start": 2.1,
+      "end": 2.6,
+      "transition": "fade"
+    },
+    {
+      "element": "observe to program",
+      "start": 0.7,
+      "end": 1.15,
+      "transition": "follow arrow right"
+    },
+    {
+      "element": "program to planning",
+      "start": 1.75,
+      "end": 2.1999999999999997,
+      "transition": "follow arrow right"
+    },
+    {
+      "element": "return loop: leaving the right panel",
+      "start": 3.05,
+      "end": 3.55,
+      "transition": "follow arrow left"
+    },
+    {
+      "element": "interact, learn, and improve",
+      "start": 3.4,
+      "end": 3.8,
+      "transition": "fade"
+    },
+    {
+      "element": "return loop: back to observation",
+      "start": 3.6,
+      "end": 4.1000000000000005,
+      "transition": "follow arrow left"
+    },
+    {
+      "element": "all three benchmark results",
+      "start": 4.5,
+      "end": 5.15,
+      "transition": "fade"
+    }
+  ],
+  "final_hold_seconds": 3.35,
+  "notes": "Original panels appear left to right, then the return arrows lead back to observation. All three result panels fade in together. The final figure is unchanged."
+}

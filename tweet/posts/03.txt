@@ -1,5 +1,5 @@
-Schema makes the theory executable.
+Schema lets the agent direct its own learning.
 
-The agent writes and revises a persistent program, tests it against all recorded experience, and uses it to design experiments and plans.
+It decides what to test, how to represent the world, when to revise its theory, and how to plan.
 
-During execution, a prediction mismatch stops the plan and returns new evidence.
+One evolving program connects these decisions: checked against experience and used for experiments and planning.

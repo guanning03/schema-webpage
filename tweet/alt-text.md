@@ -2,7 +2,7 @@
 
 ## 2 — 问题：如何发现未知规则
 
-Paper Figure 1. The agent observes an unfamiliar environment, induces an executable program, and uses it to plan and act. The bottom panels summarize ARC-AGI-3, DiG-bench, and MazeBench results.
+Paper Figure 1 animated in sequence: Observe, Induce a program, and Plan & Act appear from left to right. The return arrows lead back to Observe, then all three benchmark result panels fade in together. The complete original figure holds at the end.
 
 ## 3 — 方法：持续演化的可执行理论
 

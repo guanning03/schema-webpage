@@ -13,21 +13,23 @@
     "title": "问题：如何发现未知规则",
     "text": "How does an agent learn to act when the rules aren’t given?\n\nScientists turn observations into theories, test their predictions, and revise them with new evidence.\n\nSchema brings this process to agents exploring unfamiliar environments.",
     "weighted_characters": 236,
-    "media": "assets/02-paper-figure1.png",
-    "alt": "Paper Figure 1. The agent observes an unfamiliar environment, induces an executable program, and uses it to plan and act. The bottom panels summarize ARC-AGI-3, DiG-bench, and MazeBench results.",
-    "note": "论文 Figure 1 原图。下方 DiG-bench 面板采用论文总览图原始配置的 90.5% 结果，正文的全部 21 个游戏来自另一组已注明的配置；不改动论文原图。"
+    "media": "assets/02-overview-animation.mp4",
+    "alt": "Paper Figure 1 animated in sequence: Observe, Induce a program, and Plan & Act appear from left to right. The return arrows lead back to Observe, then all three benchmark result panels fade in together. The complete original figure holds at the end.",
+    "note": "8.5-second animation: left panel, middle panel, right panel, return arrows to the left, then all three result panels together. The complete original figure holds for 3.35 seconds. DiG-bench retains the original Figure 1 configuration (90.5%); the 21-game result in post 6 uses another paper configuration.",
+    "poster": "assets/02-paper-figure1.png",
+    "animation": true
   },
   {
     "number": 3,
     "title": "方法：持续演化的可执行理论",
-    "text": "Schema makes the theory executable.\n\nThe agent writes and revises a persistent program, tests it against all recorded experience, and uses it to design experiments and plans.\n\nDuring execution, a prediction mismatch stops the plan and returns new evidence.",
-    "weighted_characters": 256,
+    "text": "Schema lets the agent direct its own learning.\n\nIt decides what to test, how to represent the world, when to revise its theory, and how to plan.\n\nOne evolving program connects these decisions: checked against experience and used for experiments and planning.",
+    "weighted_characters": 258,
     "media": "assets/03-method-animation.mp4",
     "alt": "Paper Figure 2 animated in causal order. Recorded history states are checked one by one before certification. Actions execute sequentially. The next predicted observation appears before the actual outcome. A mismatch stops execution and discards the remaining actions. The observed counterexample returns along the revision arrow, and the program gains a new code patch.",
     "poster": "assets/03-method-animation-poster.png",
     "animation": true,
     "media_caption": "Figure 2 · 方法流程动画",
-    "note": "10.5-second animation. History states, execution actions, mismatch, discarded actions, counterexample feedback, and program revision appear in order. The complete figure holds at the end."
+    "note": "13.13-second animation, slowed to 0.8x the previous version. History states, execution actions, mismatch, discarded actions, counterexample feedback, and program revision retain their original order. The complete figure holds at the end."
   },
   {
     "number": 4,
@@ -82,12 +84,12 @@
   },
   {
     "number": 9,
-    "title": "讨论：以更少交互学习紧凑知识",
-    "text": "Schema seeks compact, informative knowledge from minimal interaction.\n\nBeyond WorldCoder’s predefined loop, frontier LLMs direct the full learning process: experiments, model revision, and planning.\n\nCould this principle extend to embodied AI and automated research?",
-    "weighted_characters": 266,
+    "title": "讨论：通用架构与未来展望",
+    "text": "Schema organizes learning around one evolving executable theory, tested against all experience and used for experimentation and planning.\n\nAs frontier LLMs advance, we believe this approach will become a powerful agentic paradigm for a wider range of real-world tasks!",
+    "weighted_characters": 268,
     "media": null,
     "alt": "",
-    "note": "目标是高信息量、紧凑、可复用的知识与交互效率。区别在于 LLM 主导实验、理论修正与规划的完整学习过程。Embodied AI 和自动科研属于设计原则的潜在应用，而非本文已验证的结果。"
+    "note": "以持续演化的同一个可执行理论组织学习，接受全部经验的检验，并直接用于实验与规划。随着 frontier LLM 能力进步，期待这一 agentic paradigm 在更多现实任务中发挥作用；后者为未来展望。"
   },
   {
     "number": 10,

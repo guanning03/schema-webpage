@@ -1,5 +1,3 @@
-Schema seeks compact, informative knowledge from minimal interaction.
+Schema organizes learning around one evolving executable theory, tested against all experience and used for experimentation and planning.
 
-Beyond WorldCoder’s predefined loop, frontier LLMs direct the full learning process: experiments, model revision, and planning.
-
-Could this principle extend to embodied AI and automated research?
+As frontier LLMs advance, we believe this approach will become a powerful agentic paradigm for a wider range of real-world tasks!
