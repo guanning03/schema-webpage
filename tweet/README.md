@@ -2,6 +2,8 @@
 
 Published at https://guanning03.github.io/schema-webpage/tweet/.
 
+The page displays only tweet copy, the quoted original tweet, and attached media. It has no preview labels, notes, or editorial controls.
+
 This directory is independent of the main project page. All preview code, text, and media live under `tweet/`.
 
 Edit `thread.json` for tweet text, attachment paths, or notes, then run:

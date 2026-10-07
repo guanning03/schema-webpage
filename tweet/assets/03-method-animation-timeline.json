@@ -1,55 +1,483 @@
 {
-  "duration_seconds": 22.0,
-  "fade_seconds": 0.75,
+  "version": 2,
   "source": "paper_arxiv/figures/schema_method.pdf",
+  "duration_seconds": 10.5,
+  "default_fade_seconds": 0.22,
   "stages": [
     {
-      "element": "agent_and_persistent_workspace",
-      "starts": 0.0
+      "element": "agent and persistent program/history",
+      "start": 0,
+      "region": [
+        899,
+        284,
+        1167,
+        688
+      ],
+      "transition": "fade"
     },
     {
-      "element": "legend",
-      "starts": 0.0
+      "element": "workspace legend",
+      "start": 0,
+      "region": [
+        650,
+        1106,
+        1420,
+        1195
+      ],
+      "transition": "fade"
     },
     {
-      "element": "hypothesize",
-      "starts": 0.8
+      "element": "hypothesize program",
+      "start": 0.1,
+      "region": [
+        0,
+        0,
+        883,
+        508
+      ],
+      "transition": "fade"
     },
     {
-      "element": "proposed_program_arrow",
-      "starts": 3.3
+      "element": "proposed program label",
+      "start": 0.66,
+      "region": [
+        899,
+        74,
+        1157,
+        125
+      ],
+      "transition": "fade"
     },
     {
-      "element": "certify",
-      "starts": 3.9
+      "element": "proposed program arrow",
+      "start": 0.68,
+      "region": [
+        884,
+        125,
+        1167,
+        179
+      ],
+      "transition": "right"
     },
     {
-      "element": "counterexamples_arrow",
-      "starts": 6.7
+      "element": "certification panel and heading",
+      "start": 0.92,
+      "region": [
+        1167,
+        0,
+        2048,
+        508
+      ],
+      "transition": "fade"
     },
     {
-      "element": "certified_program_arrow",
-      "starts": 8.5
+      "element": "defer certification evidence",
+      "start": 2.36,
+      "region": [
+        1190,
+        146,
+        2030,
+        489
+      ],
+      "transition": "fade"
     },
     {
-      "element": "plan",
-      "starts": 9.1
+      "element": "history H",
+      "start": 1.04,
+      "region": [
+        1193,
+        222,
+        1250,
+        293
+      ],
+      "transition": "fade"
     },
     {
-      "element": "commit_plan_arrow",
-      "starts": 12.1
+      "element": "history state t=126",
+      "start": 1.05,
+      "region": [
+        1254,
+        150,
+        1471,
+        401
+      ],
+      "transition": "fade"
     },
     {
-      "element": "act_with_verification",
-      "starts": 12.7
+      "element": "first history transition",
+      "start": 1.36,
+      "region": [
+        1472,
+        233,
+        1517,
+        281
+      ],
+      "transition": "right"
     },
     {
-      "element": "revise_program_arrow",
-      "starts": 16.3
+      "element": "history state t=127",
+      "start": 1.51,
+      "region": [
+        1518,
+        150,
+        1739,
+        401
+      ],
+      "transition": "fade"
     },
     {
-      "element": "complete_figure_hold",
-      "starts": 18.0
+      "element": "further history transitions",
+      "start": 1.82,
+      "region": [
+        1740,
+        233,
+        1808,
+        281
+      ],
+      "transition": "right"
+    },
+    {
+      "element": "history state t=130",
+      "start": 1.96,
+      "region": [
+        1809,
+        150,
+        2012,
+        401
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "history bracket",
+      "start": 2.24,
+      "region": [
+        1248,
+        402,
+        2018,
+        441
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "130/130 transitions certified",
+      "start": 2.36,
+      "region": [
+        1282,
+        442,
+        2001,
+        488
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "certification counterexample return",
+      "start": 2.56,
+      "region": [
+        884,
+        185,
+        1167,
+        280
+      ],
+      "transition": "left"
+    },
+    {
+      "element": "certified program arrow",
+      "start": 2.75,
+      "region": [
+        1590,
+        509,
+        1640,
+        579
+      ],
+      "transition": "down"
+    },
+    {
+      "element": "certified program label",
+      "start": 2.83,
+      "region": [
+        1637,
+        512,
+        1835,
+        573
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "planning panel",
+      "start": 3.02,
+      "region": [
+        1167,
+        580,
+        2048,
+        1102
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "defer plan contents",
+      "start": 3.59,
+      "region": [
+        1185,
+        719,
+        2020,
+        1080
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "planning tools",
+      "start": 3.16,
+      "region": [
+        1603,
+        724,
+        2008,
+        918
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "planned route",
+      "start": 3.4,
+      "region": [
+        1190,
+        724,
+        1572,
+        1075
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "search produces plan arrow",
+      "start": 3.61,
+      "region": [
+        1768,
+        919,
+        1840,
+        1009
+      ],
+      "transition": "down"
+    },
+    {
+      "element": "resulting plan",
+      "start": 3.73,
+      "region": [
+        1720,
+        1015,
+        1915,
+        1080
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "commit label",
+      "start": 3.93,
+      "region": [
+        898,
+        882,
+        1156,
+        939
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "commit arrow",
+      "start": 3.95,
+      "region": [
+        884,
+        936,
+        1166,
+        986
+      ],
+      "transition": "left"
+    },
+    {
+      "element": "execution panel and title",
+      "start": 4.18,
+      "region": [
+        0,
+        580,
+        883,
+        1102
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "defer execution sequence",
+      "start": 6.56,
+      "region": [
+        36,
+        652,
+        815,
+        1070
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "plan pi",
+      "start": 4.25,
+      "region": [
+        185,
+        727,
+        241,
+        793
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "first checked action",
+      "start": 4.48,
+      "region": [
+        241,
+        730,
+        309,
+        797
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "continue after a match",
+      "start": 4.61,
+      "region": [
+        112,
+        656,
+        399,
+        703
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "second checked action",
+      "start": 4.88,
+      "region": [
+        321,
+        730,
+        386,
+        797
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "matched actions bracket",
+      "start": 4.61,
+      "region": [
+        240,
+        702,
+        387,
+        730
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "next predicted observation",
+      "start": 5.22,
+      "region": [
+        44,
+        805,
+        385,
+        1062
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "next action",
+      "start": 5.53,
+      "region": [
+        398,
+        706,
+        464,
+        797
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "actual observed outcome",
+      "start": 5.88,
+      "region": [
+        441,
+        805,
+        783,
+        1062
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "prediction differs from observation",
+      "start": 6.12,
+      "region": [
+        381,
+        872,
+        441,
+        963
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "mismatch stops execution",
+      "start": 6.16,
+      "region": [
+        403,
+        656,
+        802,
+        703
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "stopped actions bracket",
+      "start": 6.16,
+      "region": [
+        397,
+        702,
+        618,
+        730
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "discard first remaining action",
+      "start": 6.34,
+      "region": [
+        473,
+        706,
+        536,
+        797
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "discard second remaining action",
+      "start": 6.43,
+      "region": [
+        548,
+        706,
+        615,
+        797
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "discarded label",
+      "start": 6.49,
+      "region": [
+        622,
+        716,
+        809,
+        799
+      ],
+      "transition": "fade"
+    },
+    {
+      "element": "counterexample returns along revise-P arrow",
+      "start": 6.82,
+      "end": 7.7,
+      "transition": "follow path from observation to program"
+    },
+    {
+      "element": "revise program: green code patch",
+      "start": 7.75,
+      "end": 8.04
     }
-  ]
+  ],
+  "final_hold_seconds": 2.3,
+  "notes": "History states and execution actions appear sequentially. Prediction precedes observation; mismatch stops and discards remaining actions. The counterexample follows the revision arrow, then reveals the program patch. Temporary counterexample annotation fades before the final unchanged figure."
 }

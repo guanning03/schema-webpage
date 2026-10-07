@@ -6,7 +6,7 @@ Paper Figure 1. The agent observes an unfamiliar environment, induces an executa
 
 ## 3 — 方法：持续演化的可执行理论
 
-Animated paper Figure 2. The agent and persistent workspace appear first, followed by Hypothesize, the proposed-program arrow, Certify, the counterexample feedback arrow, Plan, the commit-plan arrow, Act with verification, and finally the revision arrow. The animation ends on the complete original figure.
+Paper Figure 2 animated in causal order. Recorded history states are checked one by one before certification. Actions execute sequentially. The next predicted observation appears before the actual outcome. A mismatch stops execution and discards the remaining actions. The observed counterexample returns along the revision arrow, and the program gains a new code patch.
 
 ## 4 — 实例：用新证据修正理论
 

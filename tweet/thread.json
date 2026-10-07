@@ -23,11 +23,11 @@
     "text": "Schema makes the theory executable.\n\nThe agent writes and revises a persistent program, tests it against all recorded experience, and uses it to design experiments and plans.\n\nDuring execution, a prediction mismatch stops the plan and returns new evidence.",
     "weighted_characters": 256,
     "media": "assets/03-method-animation.mp4",
-    "alt": "Animated paper Figure 2. The agent and persistent workspace appear first, followed by Hypothesize, the proposed-program arrow, Certify, the counterexample feedback arrow, Plan, the commit-plan arrow, Act with verification, and finally the revision arrow. The animation ends on the complete original figure.",
+    "alt": "Paper Figure 2 animated in causal order. Recorded history states are checked one by one before certification. Actions execute sequentially. The next predicted observation appears before the actual outcome. A mismatch stops execution and discards the remaining actions. The observed counterexample returns along the revision arrow, and the program gains a new code patch.",
     "poster": "assets/03-method-animation-poster.png",
     "animation": true,
     "media_caption": "Figure 2 · 方法流程动画",
-    "note": "22 秒 MP4。图块与箭头按流程依次淡入，最后停留在完整原图。播放速度和布局固定，不移动或重绘论文内容。"
+    "note": "10.5-second animation. History states, execution actions, mismatch, discarded actions, counterexample feedback, and program revision appear in order. The complete figure holds at the end."
   },
   {
     "number": 4,

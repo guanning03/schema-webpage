@@ -96,7 +96,7 @@
     },
     "03-method-animation.mp4": {
       "source": "paper_arxiv/figures/schema_method.pdf",
-      "operation": "Staged opacity reveals of original figure regions; no changed text or diagram geometry",
+      "operation": "Version 2: 10.5-second causal sequence with history checks and actions revealed individually; mismatch, discarded actions, observed counterexample, return arrow, and code revision are shown in order. A temporary counterexample outline and label disappear before the final original figure.",
       "timeline": "assets/03-method-animation-timeline.json"
     },
     "05-arc-gameplay.mp4": {

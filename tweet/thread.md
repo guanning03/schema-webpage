@@ -48,9 +48,9 @@ During execution, a prediction mismatch stops the plan and returns new evidence.
 
 **媒体：** [03-method-animation.mp4](assets/03-method-animation.mp4)
 
-**ALT / 描述：** Animated paper Figure 2. The agent and persistent workspace appear first, followed by Hypothesize, the proposed-program arrow, Certify, the counterexample feedback arrow, Plan, the commit-plan arrow, Act with verification, and finally the revision arrow. The animation ends on the complete original figure.
+**ALT / 描述：** Paper Figure 2 animated in causal order. Recorded history states are checked one by one before certification. Actions execute sequentially. The next predicted observation appears before the actual outcome. A mismatch stops execution and discards the remaining actions. The observed counterexample returns along the revision arrow, and the program gains a new code patch.
 
-**制作备注：** 22 秒 MP4。图块与箭头按流程依次淡入，最后停留在完整原图。播放速度和布局固定，不移动或重绘论文内容。
+**制作备注：** 10.5-second animation. History states, execution actions, mismatch, discarded actions, counterexample feedback, and program revision appear in order. The complete figure holds at the end.
 
 ## 4. 实例：用新证据修正理论
 
