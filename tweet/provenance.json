@@ -1,0 +1,119 @@
+{
+  "copy_source": "paper_arxiv/main.tex",
+  "original_quote": {
+    "url": "https://x.com/HavenFeng/status/2077770348876247502",
+    "posted_at": "2026-07-16 15:00:28 UTC",
+    "release_date_in_copy": "2026-07-15",
+    "verification": "Public original tweet, FxTwitter status JSON; July 15 is the original blog release date."
+  },
+  "03-method.png": {
+    "source": "schema-webpage/assets/figures/schema_method.webp",
+    "operation": "Lossless PNG export of original diagram"
+  },
+  "04-theory-revision.mp4": {
+    "source": "schema-webpage/assets/cases/verification_full_3x.gif",
+    "timeline": "schema-webpage/assets/cases/full_level_manifest.json",
+    "cues": "schema-webpage/static/js/case-timelines.js",
+    "game": "LS20",
+    "level": 2,
+    "model": "Claude Opus 4.8",
+    "counts": [
+      59,
+      143
+    ],
+    "source_states": 144,
+    "source_duration_ms": 40380,
+    "output_fps": 30,
+    "notes": "Every source state retained in order. Nearest-neighbor board scaling; existing outlines retained; crisp labels, source captions and source prediction/observation insets added. CFR frame quantization at most 1/30 sec."
+  },
+  "05-arc-results.png": {
+    "data": "results/arc3_figures/data/arc_data.json",
+    "model_key": "fable5",
+    "baseline": "own_harness",
+    "rhae": [
+      58.7,
+      99.2
+    ],
+    "games_solved": [
+      14,
+      25
+    ]
+  },
+  "06-dig-results.png": {
+    "data": "paper/figures/digbench_data.json",
+    "model": "GPT-6 Astra",
+    "source_configuration": "max for both harnesses (configuration retained here for reproducibility; public labels use model name only)",
+    "games_solved": [
+      19,
+      21
+    ],
+    "lives_lost": [
+      32,
+      25
+    ]
+  },
+  "07-maze-coverage.png": {
+    "data": "results/mazebench_figures/data/maze_data.json",
+    "model": "GPT-6 Astra",
+    "ours": {
+      "actions": 27818,
+      "gems": 33,
+      "rooms": 139
+    },
+    "codex": {
+      "actions": 20673,
+      "gems": 23,
+      "rooms": 113
+    },
+    "comparison": "Full run endpoints with different action counts, explicitly labeled; not an equal-action comparison."
+  },
+  "08-ablation.png": {
+    "source": "schema-webpage/assets/figures/ablation_table_paper.png",
+    "operation": "Unmodified original paper table image",
+    "model": "Claude Opus 4.8",
+    "games": 10
+  },
+  "weighted_character_counts": [
+    234,
+    236,
+    256,
+    257,
+    239,
+    244,
+    254,
+    226,
+    241
+  ],
+  "current_thread": {
+    "posts": 10,
+    "source": "thread.json",
+    "publication_status": "local draft only"
+  },
+  "new_media": {
+    "02-paper-figure1.png": {
+      "source": "paper_arxiv/figures/teaser.pdf",
+      "operation": "Poppler rasterization, entire figure unchanged"
+    },
+    "03-method-animation.mp4": {
+      "source": "paper_arxiv/figures/schema_method.pdf",
+      "operation": "Staged opacity reveals of original figure regions; no changed text or diagram geometry",
+      "timeline": "assets/03-method-animation-timeline.json"
+    },
+    "05-arc-gameplay.mp4": {
+      "source": "schema-webpage/assets/videos/arc3_fable5_cn04.mp4",
+      "operation": "Unmodified full replay"
+    },
+    "06-dig-gameplay.mp4": {
+      "source": "schema-webpage/assets/videos/digbench_schema_P-10.mp4",
+      "operation": "Unmodified full replay"
+    },
+    "07-maze-gameplay.mp4": {
+      "source": "schema-webpage/assets/videos/mazebench_schema_full_run.mp4",
+      "operation": "Full trajectory at 4x source replay speed; first 2.5 seconds and final hold remain at original speed"
+    }
+  },
+  "discussion_sources": [
+    "paper_arxiv/main.tex:484–490",
+    "https://openreview.net/pdf?id=QGJSXMhVaL"
+  ]
+}

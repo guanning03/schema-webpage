@@ -1,0 +1,1 @@
+Animated paper Figure 2. The agent and persistent workspace appear first, followed by Hypothesize, the proposed-program arrow, Certify, the counterexample feedback arrow, Plan, the commit-plan arrow, Act with verification, and finally the revision arrow. The animation ends on the complete original figure.

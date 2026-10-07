@@ -1,0 +1,100 @@
+[
+  {
+    "number": 1,
+    "title": "从首次发布引出完整论文",
+    "text": "On July 15, we released Schema, the first agent harness to reach ~99% RHAE on the ARC-AGI-3 public set.\n\nToday, we’re sharing the full paper and code, with new results and a closer look at why Schema works.\n\nhttps://guanning03.github.io/schema-webpage/ 🧵",
+    "weighted_characters": 234,
+    "media": null,
+    "alt": "",
+    "quote_url": "https://x.com/HavenFeng/status/2077770348876247502"
+  },
+  {
+    "number": 2,
+    "title": "问题：如何发现未知规则",
+    "text": "How does an agent learn to act when the rules aren’t given?\n\nScientists turn observations into theories, test their predictions, and revise them with new evidence.\n\nSchema brings this process to agents exploring unfamiliar environments.",
+    "weighted_characters": 236,
+    "media": "assets/02-paper-figure1.png",
+    "alt": "Paper Figure 1. The agent observes an unfamiliar environment, induces an executable program, and uses it to plan and act. The bottom panels summarize ARC-AGI-3, DiG-bench, and MazeBench results.",
+    "note": "论文 Figure 1 原图。下方 DiG-bench 面板采用论文总览图原始配置的 90.5% 结果，正文的全部 21 个游戏来自另一组已注明的配置；不改动论文原图。"
+  },
+  {
+    "number": 3,
+    "title": "方法：持续演化的可执行理论",
+    "text": "Schema makes the theory executable.\n\nThe agent writes and revises a persistent program, tests it against all recorded experience, and uses it to design experiments and plans.\n\nDuring execution, a prediction mismatch stops the plan and returns new evidence.",
+    "weighted_characters": 256,
+    "media": "assets/03-method-animation.mp4",
+    "alt": "Animated paper Figure 2. The agent and persistent workspace appear first, followed by Hypothesize, the proposed-program arrow, Certify, the counterexample feedback arrow, Plan, the commit-plan arrow, Act with verification, and finally the revision arrow. The animation ends on the complete original figure.",
+    "poster": "assets/03-method-animation-poster.png",
+    "animation": true,
+    "media_caption": "Figure 2 · 方法流程动画",
+    "note": "22 秒 MP4。图块与箭头按流程依次淡入，最后停留在完整原图。播放速度和布局固定，不移动或重绘论文内容。"
+  },
+  {
+    "number": 4,
+    "title": "实例：用新证据修正理论",
+    "text": "In LS20, a refueling station disappears after use.\n\nSchema catches the failed prediction, learns that stations are single-use, and replans.\n\nWithout verification, 42 more actions execute—including a return to the spent station. The agent runs out of energy.",
+    "weighted_characters": 257,
+    "media": "assets/04-theory-revision.mp4",
+    "alt": "Complete LS20 level 2 replays, at the same action pace. Schema learns that refueling stations are single-use and finishes in 59 actions. Without runtime verification, the agent executes 42 further actions after a failed prediction, returns to a spent station, runs out of energy, and finishes after a reset in 143 actions. Short holds and red outlines mark the evidence.",
+    "poster": "assets/04-theory-revision-poster.png",
+    "media_caption": "LS20 Level 2 · 完整消融对比"
+  },
+  {
+    "number": 5,
+    "title": "ARC-AGI-3：视觉环境",
+    "text": "First, ARC-AGI-3: 25 visual games with unknown mechanics.\n\nWith Claude Fable 5, Schema raises RHAE from 58.7% in Claude Code to 99.2%, and games solved from 14 to all 25.\n\nThe model weights stay fixed; the agent learns through its program.",
+    "weighted_characters": 239,
+    "media": "assets/05-arc-gameplay.mp4",
+    "alt": "Complete CN04 gameplay with Schema and Claude Fable 5. The agent solves all six levels by moving and growing pieces; the replay shows the game board, plans, and level progress.",
+    "poster": "assets/05-arc-gameplay-poster.png",
+    "media_caption": "ARC-AGI-3 · CN04 · Claude Fable 5",
+    "note": "CN04 六关完整通关视频，保留网站版的原始播放节奏。"
+  },
+  {
+    "number": 6,
+    "title": "DiG-bench：文本环境",
+    "text": "The same idea carries over to text-based discovery.\n\nDiG-bench hides rules behind games with limited lives. Schema with GPT-6 Astra solves all 21 public games and consistently loses fewer lives than the basic harness across our tested settings.",
+    "weighted_characters": 244,
+    "media": "assets/06-dig-gameplay.mp4",
+    "alt": "Complete DiG-bench P-10 gameplay with Schema and GPT-6 Astra. The agent discovers hidden rules from symbolic examples, tests them, and clears all eight levels with limited lives.",
+    "poster": "assets/06-dig-gameplay-poster.png",
+    "media_caption": "DiG-bench · P-10 · GPT-6 Astra",
+    "note": "P-10 八关完整回放，保留文本示例、规划说明与生命数。仅显示模型名。"
+  },
+  {
+    "number": 7,
+    "title": "MazeBench：长期积累与复用",
+    "text": "Over longer interactions, those rules need to remain useful.\n\nOn MazeBench, Schema with GPT-6 Astra collects 33 gems and visits 139 rooms, exceeding the top-50 human median on both. Its program retains and reuses learned rules across context compactions.",
+    "weighted_characters": 254,
+    "media": "assets/07-maze-gameplay.mp4",
+    "alt": "MazeBench exploration with Schema and GPT-6 Astra. The full recorded trajectory is shown as a timelapse, with the room map and gem progress visible. The run finishes with 33 gems and 139 rooms visited.",
+    "poster": "assets/07-maze-gameplay-poster.png",
+    "media_caption": "MazeBench · GPT-6 Astra · 全程探索加速回放",
+    "note": "全程轨迹以网站回放的 4 倍速度展示，开头与结束停留保留。保留房间覆盖、宝石进度和原有游戏画面；不显示动作数、effort 或右侧 Action 标签。"
+  },
+  {
+    "number": 8,
+    "title": "消融：各组件的贡献",
+    "text": "What drives these gains?\n\nWe ablate Schema on the 10 hardest ARC-AGI-3 games using Claude Opus 4.8.\n\nFull Schema: 72.9% RHAE.\nReplacing code with prose, or removing certification, planning, or runtime verification: 52.4–62.3%.",
+    "weighted_characters": 226,
+    "media": "assets/08-ablation.png",
+    "alt": "Original paper ablation table. Ten hardest ARC-AGI-3 games, Claude Opus 4.8. Overall RHAE: full Schema 72.9%; without certification 62.3%; without planning 59.2%; without runtime verification 52.4%; prose-model variant 58.8%. Per-game level progress appears above the aggregate metrics."
+  },
+  {
+    "number": 9,
+    "title": "讨论：以更少交互学习紧凑知识",
+    "text": "Schema seeks compact, informative knowledge from minimal interaction.\n\nBeyond WorldCoder’s predefined loop, frontier LLMs direct the full learning process: experiments, model revision, and planning.\n\nCould this principle extend to embodied AI and automated research?",
+    "weighted_characters": 266,
+    "media": null,
+    "alt": "",
+    "note": "目标是高信息量、紧凑、可复用的知识与交互效率。区别在于 LLM 主导实验、理论修正与规划的完整学习过程。Embodied AI 和自动科研属于设计原则的潜在应用，而非本文已验证的结果。"
+  },
+  {
+    "number": 10,
+    "title": "论文、代码与团队",
+    "text": "Paper: https://arxiv.org/abs/2609.39140\nCode: https://github.com/guanning03/Schema\nReplays: https://guanning03.github.io/schema-webpage/\n\nTeam: @guanningzeng @Jiani_Wang_ @wenjie_ma @shaofeng_y27736 @ChenyangWa70207 @lustralisk95 @akanazawa @wodenimoni @xiuyu_l @Zanette_ai @HavenFeng",
+    "weighted_characters": 241,
+    "media": null,
+    "alt": ""
+  }
+]

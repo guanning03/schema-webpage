@@ -1,0 +1,6 @@
+What drives these gains?
+
+We ablate Schema on the 10 hardest ARC-AGI-3 games using Claude Opus 4.8.
+
+Full Schema: 72.9% RHAE.
+Replacing code with prose, or removing certification, planning, or runtime verification: 52.4–62.3%.

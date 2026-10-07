@@ -1,0 +1,3 @@
+The same idea carries over to text-based discovery.
+
+DiG-bench hides rules behind games with limited lives. Schema with GPT-6 Astra solves all 21 public games and consistently loses fewer lives than the basic harness across our tested settings.

@@ -1,0 +1,3 @@
+Over longer interactions, those rules need to remain useful.
+
+On MazeBench, Schema with GPT-6 Astra collects 33 gems and visits 139 rooms, exceeding the top-50 human median on both. Its program retains and reuses learned rules across context compactions.

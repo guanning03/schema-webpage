@@ -1,0 +1,55 @@
+{
+  "duration_seconds": 22.0,
+  "fade_seconds": 0.75,
+  "source": "paper_arxiv/figures/schema_method.pdf",
+  "stages": [
+    {
+      "element": "agent_and_persistent_workspace",
+      "starts": 0.0
+    },
+    {
+      "element": "legend",
+      "starts": 0.0
+    },
+    {
+      "element": "hypothesize",
+      "starts": 0.8
+    },
+    {
+      "element": "proposed_program_arrow",
+      "starts": 3.3
+    },
+    {
+      "element": "certify",
+      "starts": 3.9
+    },
+    {
+      "element": "counterexamples_arrow",
+      "starts": 6.7
+    },
+    {
+      "element": "certified_program_arrow",
+      "starts": 8.5
+    },
+    {
+      "element": "plan",
+      "starts": 9.1
+    },
+    {
+      "element": "commit_plan_arrow",
+      "starts": 12.1
+    },
+    {
+      "element": "act_with_verification",
+      "starts": 12.7
+    },
+    {
+      "element": "revise_program_arrow",
+      "starts": 16.3
+    },
+    {
+      "element": "complete_figure_hold",
+      "starts": 18.0
+    }
+  ]
+}

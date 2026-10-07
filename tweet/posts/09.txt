@@ -1,0 +1,5 @@
+Schema seeks compact, informative knowledge from minimal interaction.
+
+Beyond WorldCoder’s predefined loop, frontier LLMs direct the full learning process: experiments, model revision, and planning.
+
+Could this principle extend to embodied AI and automated research?

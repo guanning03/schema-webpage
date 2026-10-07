@@ -1,0 +1,5 @@
+Schema makes the theory executable.
+
+The agent writes and revises a persistent program, tests it against all recorded experience, and uses it to design experiments and plans.
+
+During execution, a prediction mismatch stops the plan and returns new evidence.

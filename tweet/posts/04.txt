@@ -1,0 +1,5 @@
+In LS20, a refueling station disappears after use.
+
+Schema catches the failed prediction, learns that stations are single-use, and replans.
+
+Without verification, 42 more actions execute—including a return to the spent station. The agent runs out of energy.
