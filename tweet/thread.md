@@ -7,12 +7,10 @@
 ```text
 On July 15, we released Schema, the first agent harness to reach ~99% RHAE on the ARC-AGI-3 public set.
 
-Today, we’re sharing the full paper and code, with new results and a closer look at why Schema works.
-
-https://guanning03.github.io/schema-webpage/ 🧵
+Today, we’re sharing the full paper and code, with new results and a closer look at why Schema works. 🧵
 ```
 
-**字符数：** 234 / 280。
+**字符数：** 209 / 280。
 
 **引用：** [首次发布 tweet](https://x.com/HavenFeng/status/2077770348876247502)，沿用已有 demo。
 
