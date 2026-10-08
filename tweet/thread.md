@@ -71,14 +71,14 @@ Without verification, 42 more actions execute—including a return to the spent 
 ## 5. ARC-AGI-3：视觉环境
 
 ```text
-First, ARC-AGI-3: 25 visual games with unknown mechanics.
+We evaluated the effectiveness of Schema on diverse environments.
 
-With Claude Fable 5, Schema raises RHAE from 58.7% in Claude Code to 99.2%, and games solved from 14 to all 25.
+Across ARC-AGI-3’s 25 games, Schema with Claude Fable 5 raises RHAE from 58.7% in Claude Code to 99.2%, and games solved from 14 to all 25.
 
 The model weights stay fixed; the agent learns through its program.
 ```
 
-**字符数：** 239 / 280。
+**字符数：** 275 / 280。
 
 **媒体：** [05-arc-gameplay.mp4](assets/05-arc-gameplay.mp4)
 
