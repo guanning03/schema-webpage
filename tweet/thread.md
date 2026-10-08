@@ -131,9 +131,11 @@ Replacing code with prose, or removing certification, planning, or runtime verif
 
 **字符数：** 226 / 280。
 
-**媒体：** [08-ablation.png](assets/08-ablation.png)
+**媒体：** [08-ablation-combined.png](assets/08-ablation-combined.png)
 
-**ALT / 描述：** Original paper ablation table. Ten hardest ARC-AGI-3 games, Claude Opus 4.8. Overall RHAE: full Schema 72.9%; without certification 62.3%; without planning 59.2%; without runtime verification 52.4%; prose-model variant 58.8%. Per-game level progress appears above the aggregate metrics.
+**ALT / 描述：** Ablation table and four analysis plots in one figure. Left: Claude Opus 4.8 on the ten hardest ARC-AGI-3 games; RHAE is 72.9% for Schema, 58.8% for prose, 62.3% without certification, 59.2% without planning, and 52.4% without verification. Right, in a 2-by-2 grid: representation compares CN04 level progress; certification compares AR25 history agreement; planning compares LS20 level progress; verification shows actions taken after prediction mismatches across ten games. The table occupies 30% of the combined width.
+
+**制作备注：** 合图左侧保留论文表格，宽度占 30%；右侧四张分析图按 representation、certification、planning、verification 排成 2×2。曲线、数值、图例顺序和颜色沿用论文绘图脚本，仅调整版式、字号及线宽。
 
 ## 9. 讨论：通用架构与未来展望
 
@@ -166,7 +168,7 @@ Team: @guanningzeng @Jiani_Wang_ @wenjie_ma @shaofeng_y27736 @ChenyangWa70207 @l
 - 首帖保留首次 release 的约 99% 历史结果；第 5 条为完整论文的 Claude Fable 5 结果：58.7% → 99.2% RHAE，14 → 25 个游戏通关。
 - Figure 1 动画分步展示论文原图，最终完整保留原图；其中 DiG-bench 面板对应 90.5% 配置。第 6 条全部 21 个游戏的结果来自论文另一组配置。DiG-bench 的生命损失在三组配置分别为 Basic → Schema：96 → 34、52 → 29、32 → 25。公开媒体只显示模型名。
 - 第 4 条来自 Claude Opus 4.8 的 LS20 Level 2 消融：Schema 59 动作，Without verification 143 动作。没有删除重试或后续动作。
-- 第 7 条视频的终点为 33 gems / 139 rooms；人类 top-50 中位数是 29 / 137。视频对完整轨迹加速，保留开头和结尾。第 8 条为 Claude Opus 4.8、10 个最难游戏的消融原表。
+- 第 7 条视频的终点为 33 gems / 139 rooms；人类 top-50 中位数是 29 / 137。视频对完整轨迹加速，保留开头和结尾。第 8 条将 Claude Opus 4.8、10 个最难游戏的消融原表与四张行为分析图合为一张。
 - 第 3 条突出 agent 对实验、状态表示、理论修正和规划的决策权，以及连接这些操作的持续演化程序。依据：论文方法章节。
 - 第 9 条强调同一个可执行理论接受历史经验检验、并用于实验与规划，再展望这一架构随 frontier LLM 进步在更多现实任务中的潜力。依据：[论文方法及 Implementation Details](https://arxiv.org/abs/2609.39140)。
 - 这是本地预览和素材包，尚未发布到 X。

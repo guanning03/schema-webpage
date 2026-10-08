@@ -47,7 +47,6 @@ html='''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Schema</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#fff;color:#18212a;font-family:Arial,Helvetica,sans-serif}main{max-width:840px;margin:0 auto;padding:8px 24px 48px}article{padding:40px 0;border-bottom:1px solid #e8ecef;scroll-margin-top:24px}article:last-child{border:0}.tweet{margin:0;font-size:20px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}a{color:#176fbc;text-decoration:none}a:hover{text-decoration:underline}a:focus-visible{outline:2px solid #176fbc;outline-offset:4px}blockquote{margin:24px 0 0;padding:18px 22px;border:1px solid #dfe5ea;border-radius:12px;font-size:16px;line-height:1.6;white-space:pre-wrap}blockquote a{color:inherit}.media:empty{display:none}.media{display:grid;gap:18px;margin-top:24px}.media img,.media video{display:block;width:100%;height:auto;border-radius:8px}.media video{background:#fff}.image{display:block}@media(max-width:540px){main{padding:0 18px 30px}article{padding:30px 0}.tweet{font-size:18px;line-height:1.55}blockquote{padding:14px 16px;font-size:15px}.media{margin-top:20px}}
-#post-8 .media{width:30%;margin-inline:auto}
 </style></head><body><main>'''+"\n".join(articles)+'''</main><script>
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   const observer=new IntersectionObserver(entries=>{

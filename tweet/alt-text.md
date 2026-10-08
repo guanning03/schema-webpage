@@ -26,4 +26,4 @@ MazeBench exploration with Schema and GPT-6 Astra. The full recorded trajectory 
 
 ## 8 — 消融：各组件的贡献
 
-Original paper ablation table. Ten hardest ARC-AGI-3 games, Claude Opus 4.8. Overall RHAE: full Schema 72.9%; without certification 62.3%; without planning 59.2%; without runtime verification 52.4%; prose-model variant 58.8%. Per-game level progress appears above the aggregate metrics.
+Ablation table and four analysis plots in one figure. Left: Claude Opus 4.8 on the ten hardest ARC-AGI-3 games; RHAE is 72.9% for Schema, 58.8% for prose, 62.3% without certification, 59.2% without planning, and 52.4% without verification. Right, in a 2-by-2 grid: representation compares CN04 level progress; certification compares AR25 history agreement; planning compares LS20 level progress; verification shows actions taken after prediction mismatches across ten games. The table occupies 30% of the combined width.

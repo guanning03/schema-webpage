@@ -116,6 +116,18 @@
       "source": "paper_arxiv/figures/teaser.pdf",
       "operation": "8.5-second animation: top panels appear left to right, followed by the return arrows to observation, then all three benchmark result panels. The complete original figure is held for 3.35 seconds.",
       "timeline": "assets/02-overview-animation-timeline.json"
+    },
+    "08-ablation-combined.png": {
+      "table_source": "schema-webpage/tweet/assets/08-ablation.png",
+      "plot_source": "results/arc3_figures/paper_fig_ablation.py",
+      "plot_data": "results/arc3_figures/data/arc_data.json",
+      "plot_data_sha256": "042183073041e4c8d23834ac597e5541085f1605ed88c973518d7f8cc083f55f",
+      "layout": "Original paper table at left, 30% width; representation/certification above planning/verification at right.",
+      "output_pixels": [
+        3600,
+        2448
+      ],
+      "notes": "Only arrangement, typography sizes, and line/marker sizes change. All plotted data, labels, legend order, and colors are retained from the paper's plotting script."
     }
   },
   "discussion_sources": [
