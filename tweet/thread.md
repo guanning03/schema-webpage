@@ -154,12 +154,12 @@ As frontier LLMs advance, we believe this approach will become a powerful agenti
 ```text
 Paper: https://arxiv.org/abs/2609.39140
 Code: https://github.com/guanning03/Schema
-Replays: https://guanning03.github.io/schema-webpage/
+Project Website: https://guanning03.github.io/schema-webpage/
 
-Team: @guanningzeng @Jiani_Wang_ @wenjie_ma @shaofeng_y27736 @ChenyangWa70207 @lustralisk95 @akanazawa @wodenimoni @xiuyu_l @Zanette_ai @HavenFeng
+@guanningzeng @Jiani_Wang_ @wenjie_ma @shaofeng_y27736 @ChenyangWa70207 @lustralisk95 @akanazawa @wodenimoni @xiuyu_l @Zanette_ai @HavenFeng
 ```
 
-**字符数：** 241 / 280。
+**字符数：** 243 / 280。
 
 ## 发布与核对说明
 
