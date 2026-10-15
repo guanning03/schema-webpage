@@ -31,6 +31,9 @@ button, select { font: inherit; }
 .case-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 3.03%; margin-bottom: .6rem; font-family: 'Castoro', Georgia, serif; font-size: 1.1rem; font-weight: 400; line-height: 1.5; text-align: center; color: #1f2937; }
 .case-media { margin: 0; }
 .case-media video { display: block; width: 100%; height: auto; aspect-ratio: 2376 / 1152; border-radius: 0; background: #fff; }
+.method-animation { position: relative; }
+.method-animation video { display: block; width: 100%; height: auto; aspect-ratio: 1920 / 1120; background: #fff; }
+.method-animation .case-toggle { position: absolute; right: 0; bottom: 0; }
 .case-counts { display: grid; grid-template-columns: 1fr 1fr; gap: 3.03%; margin: .5rem 0 0; text-align: center; color: #6b7280; font-family: 'Castoro', Georgia, serif; font-size: .88rem; font-variant-numeric: tabular-nums; }
 .case-counts [data-complete="true"] { color: #1f2937; }
 .case-observation { display: flex; align-items: center; justify-content: center; gap: 24px; min-height: 112px; padding: 12px 0; }
@@ -102,5 +105,6 @@ footer.footer .footer-logos img { display: block; height: auto; max-height: 100%
   .case-evidence figcaption { max-width: 64px; font-size: .66rem; }
   .case-evidence .case-metric { font-size: 1.2rem; }
   .case-caption { font-size: .85rem; }
+  .method-animation .case-toggle { position: static; margin: .5rem 0 0 auto; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

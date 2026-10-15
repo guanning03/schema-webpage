@@ -25,6 +25,12 @@ the shorter run holds its completed state until the longer run finishes.
 Pausing or scrolling away preserves the current frame. Standalone GIFs retain
 a counter footer (2376 × 1278).
 
+The method figure is the 13-second Figure 2 animation from the tweet
+(`assets/figures/schema_method_animation.mp4`, made by
+`tweet/scripts/animate_method.py`). It plays once when scrolled into view, then
+holds the complete figure; the button pauses or replays it. With reduced motion,
+the static figure stays until played. Clicking enlarges the static figure.
+
 ## Local preview
 
 ```sh

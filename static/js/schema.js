@@ -159,6 +159,50 @@ document.querySelectorAll('.case-study').forEach(card => {
   updatePlayback();
 });
 
+// The method figure builds up once when it comes into view, then holds the complete figure.
+// The poster is the complete figure, shown before playback and with reduced motion.
+const methodAnimation = document.getElementById('method-animation');
+const methodButton = document.querySelector('[aria-controls="method-animation"]');
+let methodVisible = false;
+let methodPausedByUser = reducedMotion.matches;
+function updateMethodButton() {
+  const action = methodAnimation.paused ? (methodAnimation.ended ? 'Replay' : 'Play') : 'Pause';
+  methodButton.dataset.paused = String(methodAnimation.paused);
+  methodButton.title = `${action} animation`;
+  methodButton.setAttribute('aria-label', `${action} method animation`);
+}
+function updateMethodPlayback() {
+  if (methodVisible && !methodPausedByUser && !methodAnimation.ended && !document.hidden) {
+    methodAnimation.play().catch(error => {
+      if (error.name === 'AbortError') return;
+      methodPausedByUser = true;
+      updateMethodButton();
+    });
+  } else {
+    methodAnimation.pause();
+  }
+  updateMethodButton();
+}
+methodButton.addEventListener('click', () => {
+  methodPausedByUser = !methodAnimation.paused;
+  if (!methodPausedByUser) {
+    methodVisible = true;
+    if (methodAnimation.ended) methodAnimation.currentTime = 0;
+  }
+  updateMethodPlayback();
+});
+['play', 'pause', 'ended'].forEach(type => methodAnimation.addEventListener(type, updateMethodButton));
+document.addEventListener('visibilitychange', updateMethodPlayback);
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(entries => {
+    methodVisible = entries[0].isIntersecting && entries[0].intersectionRatio >= .55;
+    updateMethodPlayback();
+  }, { threshold: [0, .55] }).observe(methodAnimation);
+} else {
+  methodVisible = true;
+}
+updateMethodPlayback();
+
 const copyButton = document.getElementById('copy-citation');
 copyButton.addEventListener('click', async () => {
   const citation = document.getElementById('citation').textContent;
@@ -182,12 +226,14 @@ copyButton.addEventListener('click', async () => {
 const figureDialog = document.getElementById('figure-dialog');
 const enlarged = document.getElementById('enlarged-figure');
 document.querySelectorAll('.zoomable').forEach(img => {
+  // The method animation enlarges to its complete static figure.
+  const description = img.dataset.alt || img.alt;
   img.tabIndex = 0;
   img.setAttribute('role', 'button');
-  img.setAttribute('aria-label', `Enlarge figure: ${img.alt}`);
+  img.setAttribute('aria-label', `Enlarge figure: ${description}`);
   function showFigure() {
-    enlarged.src = img.src;
-    enlarged.alt = img.alt;
+    enlarged.src = img.dataset.full || img.src;
+    enlarged.alt = description;
     figureDialog.showModal();
   }
   img.addEventListener('click', showFigure);

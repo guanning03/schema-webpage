@@ -443,8 +443,8 @@
         -webkit-overflow-scrolling: touch;
       }
     }
-  </style><link href="static/css/schema.css?v=cases-20261006" rel="stylesheet"/>
-<link href="static/favicon.svg" rel="icon" type="image/svg+xml"/><script defer="" src="static/js/fontawesome.all.min.js"></script><script defer="" src="static/js/case-timelines.js?v=cases-20261006"></script><script defer="" src="static/js/schema.js?v=cases-20261006"></script><meta content="Schema: Discovering Unknown Environments via Agentic Program Induction" property="og:title"/><meta content="Schema learns unknown environments through agentic program induction: hypothesize, certify, plan, and act with verification." property="og:description"/></head>
+  </style><link href="static/css/schema.css?v=method-20261015" rel="stylesheet"/>
+<link href="static/favicon.svg" rel="icon" type="image/svg+xml"/><script defer="" src="static/js/fontawesome.all.min.js"></script><script defer="" src="static/js/case-timelines.js?v=cases-20261006"></script><script defer="" src="static/js/schema.js?v=method-20261015"></script><meta content="Schema: Discovering Unknown Environments via Agentic Program Induction" property="og:title"/><meta content="Schema learns unknown environments through agentic program induction: hypothesize, certify, plan, and act with verification." property="og:description"/></head>
 <body><a class="skip-link" href="#motivation">Skip to paper overview</a><section class="hero" id="top">
 <div class="hero-body">
 <div class="container is-max-widescreen">
@@ -502,7 +502,7 @@
 <div class="container is-max-desktop">
 <h2 class="title is-3 section-title">Schema: Interactive Program Induction</h2>
 <div class="content has-text-justified"><p>Schema is an agent harness with a persistent program workspace and four operations: <strong>hypothesize, certify, plan, and act with verification</strong>. The LLM decides what to investigate, when to revise its program, and how to act. The harness makes those programs testable against experience and usable for planning.</p></div>
-<div class="figure-container"><div class="has-text-centered"><img alt="The Schema harness connects hypothesis construction, history certification, planning, and verified execution. A prediction mismatch returns a counterexample to the agent." class="zoomable" decoding="async" height="1284" loading="lazy" src="assets/figures/schema_method.webp" style="max-width: 100%;" width="2200"/></div></div>
+<div class="figure-container"><div class="method-animation"><video class="zoomable" id="method-animation" muted playsinline preload="auto" poster="assets/figures/schema_method.webp" width="1920" height="1120" data-full="assets/figures/schema_method.webp" data-alt="The Schema harness connects hypothesis construction, history certification, planning, and verified execution. A prediction mismatch returns a counterexample to the agent."><source src="assets/figures/schema_method_animation.mp4" type="video/mp4"/><img alt="The Schema harness connects hypothesis construction, history certification, planning, and verified execution. A prediction mismatch returns a counterexample to the agent." height="1284" src="assets/figures/schema_method.webp" width="2200"/></video><button class="case-toggle" type="button" aria-label="Play method animation" aria-controls="method-animation" data-paused="true" title="Play animation"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path class="case-icon-pause" d="M7 4v12M13 4v12" fill="none" stroke="currentColor" stroke-width="2"/><path class="case-icon-play" d="M6 3.5 16 10 6 16.5Z" fill="currentColor"/></svg></button></div></div>
 <div class="content method-summary"><ul>
 <li><strong>Hypothesize.</strong> Build and refine an executable theory of the environment.</li>
 <li><strong>Certify.</strong> Check the theory against all recorded experience.</li>
